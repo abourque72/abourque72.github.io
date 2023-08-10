@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Andrea Bourque | MATH 7220</title>
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<div style="background-color:#F3D6FF; ">
+	<p style="text-align:center"><a href="aboutme.html">About Me</a> | <a href="researchinterests.html">Research Interests</a> | <a href="resources.html">Resources</a> | <a href="misc.html">Miscellaneous</a></p>
+	<hr>
+	<p style = "text-align:left">Homework solutions for LSU MATH 7220, Commutative Algebra.</p>
+	<p style = "text-align:left">The course description is "We will cover the basics of Commutative Algebra and give an introduction to the elements of Algebraic Geometry of affine and projective varieties. This will be a preparation for learning the theory of Schemes. Topics include: </p>
+	<ol>
+	  <li> Affine and projective varieties
+	  <li> Prime and Maximal Ideals
+	  <li> Localization
+	  <li> Integral extensions
+	  <li> Primary decomposition
+	  <li> Dimension; Hilbert-Samuel polynomial
+	  <li> Homological methods; Free resolutions
+	  <li> K&auml;hler differentials
+	  <li> Flat, smooth and &eacute;tale morphisms"
+	</ol>
+	<p style = "text-align:left">Problems mostly come from the instructor, sometimes from textbooks such as the famous ones Atiyah-MacDonald and Eisenbud. </p>
+	<p style = "text-align:left;font-weight:bold;font-style:italic">There may be errors or typos! You have been warned!</p>
+	<ul>
+	  <li> <a href = "homework/M7220/1.pdf">Homework 1</a>  </li>
+	  <li> <a href = "homework/M7220/2.pdf">Homework 2</a>  </li>
+	  <li> <a href = "homework/M7220/3.pdf">Homework 3</a>  </li>
+	  <li> <a href = "homework/M7220/4.pdf">Homework 4</a>  </li>
+	  <li> <a href = "homework/M7220/5.pdf">Homework 5</a>  </li>
+	  <li> <a href = "homework/M7220/6.pdf">Homework 6</a>  </li>
+	  <li> <a href = "homework/M7220/7.pdf">Homework 7</a>  </li>
+	  <li> <a href = "homework/M7220/8.pdf">Homework 8</a>  </li>
+	  <li> <a href = "homework/M7220/9.pdf">Homework 9</a>  </li>
+	</ul>
+	<hr>
+	<p style="text-align:center"><a href="https://math.lsu.edu/~abour99">Home</a> </p>
+</div>
+
+</body>
+</html>

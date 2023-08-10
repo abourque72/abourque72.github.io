@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Andrea Bourque | MATH 7311</title>
+  <link href="styles.css" rel="stylesheet" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div style="background-color:#F3D6FF; ">
+	<p style="text-align:center"><a href="aboutme.html">About Me</a> | <a href="researchinterests.html">Research Interests</a> | <a href="resources.html">Resources</a> | <a href="misc.html">Miscellaneous</a></p>
+	<hr>
+	<p style = "text-align:left">Homework solutions for LSU MATH 7311, Real Analysis.</p>
+	<p style = "text-align:left">The course description is "This is a standard introductory course on analysis based on measure theory and integration. We start by introducing sigma algebras and measures. We will then discuss measurable functions and integration of real and complex valued functions. As an example we discuss the Lebesgue integral on the line and n-dimensional Euclidean space. We also discuss the Lebesgue integral versus the Riemann integral. Important topics here are the convergence theorems, product measures and Fubini's theorem and the Radon-Nikodym derivative. We give a short discussion of Banach spaces and Hilbert spaces. We then introduce \(L^p\) spaces and discuss the main properties of those spaces. Further topics include functions of bounded variations Lebesgue differentiation theorems, \(L^p\) and its dual. Other topics might be included depending on the time."</p>
+	<p style = "text-align:left">Problems were provided by instructor. </p>
+	<p style = "text-align:left;font-weight:bold;font-style:italic">There may be errors or typos! You have been warned!</p>
+	<ul>
+	  <li> <a href = "homework/M7311/1.pdf">Homework 1</a>  </li>
+	  <li> <a href = "homework/M7311/2.pdf">Homework 2</a>  </li>
+	  <li> <a href = "homework/M7311/3.pdf">Homework 3</a>  </li>
+	  <li> <a href = "homework/M7311/4.pdf">Homework 4</a>  </li>
+	  <li> <a href = "homework/M7311/5.pdf">Homework 5</a>  </li>
+	  <li> <a href = "homework/M7311/6.pdf">Homework 6</a>  </li>
+	  <li> <a href = "homework/M7311/7.pdf">Homework 7</a>  </li>
+	  <li> <a href = "homework/M7311/8.pdf">Homework 8</a>  </li>
+	</ul>
+	<hr>
+	<p style="text-align:center"><a href="https://math.lsu.edu/~abour99">Home</a> </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Andrea Bourque | MATH 7230 Spring 2021</title>
+  <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<div style="background-color:#F3D6FF; ">
+	<p style="text-align:center"><a href="aboutme.html">About Me</a> | <a href="researchinterests.html">Research Interests</a> | <a href="resources.html">Resources</a> | <a href="misc.html">Miscellaneous</a></p>
+	<hr>
+	<p style = "text-align:left">Homework solutions for LSU MATH 7230 Spring 2021, Algebraic Number Theory.</p>
+	<p style = "text-align:left">The course description is "Basic concepts and results in algebraic number theory including number fields, Dedekind domains, and local fields."</p>
+	<p style = "text-align:left">Problems (mostly) come from Robert Ash's <i>A Course in Algebraic Number Theory</i> textbook.</p>
+	<p style = "text-align:left;font-weight:bold;font-style:italic">There may be errors or typos! You have been warned!</p>
+	<ul>
+	  <li> <a href = "homework/M7230S21/1.pdf">Homework 1</a>  </li>
+	  <li> <a href = "homework/M7230S21/2.pdf">Homework 2</a>  </li>
+	  <li> <a href = "homework/M7230S21/3.pdf">Homework 3</a>  </li>
+	  <li> <a href = "homework/M7230S21/4.pdf">Homework 4</a>  </li>
+	  <li> <a href = "homework/M7230S21/5.pdf">Homework 5</a>  </li>
+	  <li> <a href = "homework/M7230S21/6.pdf">Homework 6</a>  </li>
+	  <li> <a href = "homework/M7230S21/7.pdf">Homework 7</a>  </li>
+	  <li> <a href = "homework/M7230S21/8.pdf">Homework 8</a>  </li>
+	  <li> <a href = "homework/M7230S21/9.pdf">Homework 9</a>  </li>
+	  <li> <a href = "homework/M7230S21/10.pdf">Homework 10</a>  </li>
+	  <li> <a href = "homework/M7230S21/11.pdf">Homework 11</a>  </li>
+	</ul>
+	<hr>
+	<p style="text-align:center"><a href="https://math.lsu.edu/~abour99">Home</a> </p>
+</div>
+
+</body>
+</html>
