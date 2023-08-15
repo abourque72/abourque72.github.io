@@ -36,7 +36,7 @@ function init_poly() {
 	else if (n > 100) {
 		n = 100;
 	}
-	poly = new Polyy(, 300);
+	poly = new Polyy(n, 300);
 	poly_c = true;
 }
 
