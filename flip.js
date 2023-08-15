@@ -30,7 +30,7 @@ function draw() {
 
 function init_poly() {
 	let n = int(inp.value());
-	if (n < 3) {
+	if (n < 3 || isNaN(n)) {
 		n = 3;
 	}
 	else if (n > 100) {
