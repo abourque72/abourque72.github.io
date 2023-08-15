@@ -29,7 +29,14 @@ function draw() {
 }
 
 function init_poly() {
-	poly = new Polyy(int(inp.value()), 300);
+	let n = int(inp.value());
+	if (n < 3) {
+		n = 3;
+	}
+	else if (n > 100) {
+		n = 100;
+	}
+	poly = new Polyy(, 300);
 	poly_c = true;
 }
 
