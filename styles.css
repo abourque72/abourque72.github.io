@@ -45,3 +45,17 @@ header p    {
 a           {
             color:white
             }
+
+/*for some reason my dev tools on google arent working properly, so im gonna add the other queries later*/
+@media (max-width: 1012px) {
+    header      {
+                font-size: 28px;
+    }
+}
+
+/*this is going to have to be a dropdown menu eventually, the text is far too small for mobile users to click the links accurately*/
+@media (max-width: 500px) {
+    header      {
+                font-size: 14px;
+    }
+}
