@@ -1,7 +1,7 @@
 /* main stylesheet for site */
 
 body		{
-            background-color:#47005a;
+            background-color:#2c0038;
             margin:70px 10px 10px 10px;
             padding-bottom: 50px;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -39,7 +39,7 @@ header p    {
 
 .main       {
             color:white;
-            background-color: #7c0b9b;
+            background-color: #690b83;
             }
 
 a           {
