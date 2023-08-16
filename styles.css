@@ -1,5 +1,42 @@
 /* main stylesheet for site */
 
-body		{background-color:#8c09b0; margin: 0in 2in 0in 2in; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+body		{
+            background-color:#8c09b0;
+            margin:70px 10px 10px 10px;
+            padding-bottom: 50px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
 
-div			{padding: 1px 5px 1px 5px}
+div			{
+            padding: 1px 5px 1px 5px
+            }
+
+header      {
+            background-color:#161a1d;
+            font-size: 30px;
+            display: flex;
+            width:100%;
+            padding:5px;
+            position: fixed;
+            justify-content: space-between; right:0;
+            left:0;
+            top:0;
+            color:white
+            }
+
+header a    {
+            color:white
+            }
+
+header p    {
+            margin: 5px
+            }
+
+.name       {
+            display:block;
+            }
+
+.links      {
+            margin-right: 20px;
+            display:block;
+            } 
