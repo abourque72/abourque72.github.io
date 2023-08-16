@@ -1,7 +1,7 @@
 /* main stylesheet for site */
 
 body		{
-            background-color:#8c09b0;
+            background-color:#47005a;
             margin:70px 10px 10px 10px;
             padding-bottom: 50px;
             font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,10 +24,6 @@ header      {
             color:white
             }
 
-header a    {
-            color:white
-            }
-
 header p    {
             margin: 5px
             }
@@ -40,3 +36,12 @@ header p    {
             margin-right: 20px;
             display:block;
             } 
+
+.main       {
+            color:white;
+            background-color: #7c0b9b;
+            }
+
+a           {
+            color:white
+            }
