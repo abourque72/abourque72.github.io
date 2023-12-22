@@ -2,6 +2,7 @@ var menuItems = [
     { text: 'About Me', href: 'aboutme.html' },
     { text: 'Research Interests', href: 'researchinterests.html' },
     { text: 'Resources', href: 'resources.html' },
+    { text: 'Blog', href: 'blog' },
     { text: 'Miscellaneous', href: 'misc.html' }
 ];
 
