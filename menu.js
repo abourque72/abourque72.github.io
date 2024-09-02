@@ -1,9 +1,9 @@
 var menuItems = [
-    { text: 'About Me', href: 'aboutme.html' },
-    { text: 'Research Interests', href: 'researchinterests.html' },
-    { text: 'Resources', href: 'resources.html' },
-    { text: 'Blog', href: 'blog' },
-    { text: 'Miscellaneous', href: 'misc.html' }
+    { text: 'About Me', href: 'https://abourque72.github.io/aboutme.html' },
+    { text: 'Research Interests', href: 'https://abourque72.github.io/researchinterests.html' },
+    { text: 'Resources', href: 'https://abourque72.github.io/resources.html' },
+    { text: 'Blog', href: 'https://abourque72.github.io/blog' },
+    { text: 'Miscellaneous', href: 'https://abourque72.github.io/misc.html' }
 ];
 
 var menuContainer = document.getElementById('menu');
