@@ -1,0 +1,229 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\title{D-modules \\ Lectures by Victor Ginzburg}
+\author{Typed by Andrea Bourque}
+\date{Spring 2026}
+
+\begin{document}
+
+\maketitle
+
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\eps}[0]{\varepsilon}
+\newcommand{\Hom}[0]{\mathrm{Hom}}
+\newcommand{\Tor}[0]{\mathrm{Tor}}
+\newcommand{\Ext}[0]{\mathrm{Ext}}
+\newcommand{\Aut}[0]{\mathrm{Aut}}
+\newcommand{\Spec}[0]{\mathrm{Spec}}
+\newcommand{\mSpec}[0]{\mathrm{mSpec}}
+\newcommand{\Ann}[0]{\mathrm{Ann}}
+\newcommand{\Supp}[0]{\mathrm{Supp}}
+\newcommand{\im}[0]{\mathrm{im}}
+\newcommand{\id}[0]{\mathrm{id}}
+\newcommand{\Real}[0]{\mathrm{Re}}
+\newcommand{\Imag}[0]{\mathrm{Im}}
+\newcommand{\xr}[1]{\xrightarrow{#1}}
+\newcommand{\Rmod}[1]{{#1}\mathrm{-mod}}
+\newcommand{\Zmodn}[1]{\mathbb Z/{#1}\mathbb Z}
+\newcommand{\brac}[1]{\langle {#1} \rangle}
+\newcommand{\pair}[2]{\langle {#1}, {#2} \rangle}
+\newcommand{\cR}[0]{\overline{\mathbb{R}}}
+\newcommand{\A}[0]{\mathbb{A}}
+\newcommand{\R}[0]{\mathbb{R}}
+\newcommand{\C}[0]{\mathbb{C}}
+\newcommand{\N}[0]{\mathbb{N}}
+\newcommand{\Z}[0]{\mathbb{Z}}
+\newcommand{\Q}[0]{\mathbb{Q}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\vphi}[0]{\varphi}
+\newcommand{\into}[0]{\hookrightarrow}
+\newcommand{\onto}[0]{\twoheadrightarrow}
+\newcommand{\limn}[0]{\lim_{n\to\infty}}
+\newcommand{\Sets}[0]{\mathbf{Sets}}
+\newcommand{\ot}[0]{\leftarrow}
+\newcommand{\xl}[1]{\xleftarrow{#1}}
+\newcommand{\floor}[1]{\lfloor {#1} \rfloor}
+\newcommand{\bigfloor}[1]{\left\lfloor {#1}\right\rfloor}
+\newcommand{\bigp}[1]{\left ( {#1} \right )}
+\newcommand{\bigabs}[1]{\left | {#1} \right |}
+\newcommand{\suminfty}[1]{\sum_{{#1}=1}^\infty}
+\newcommand{\Char}[0]{\mathrm{char }}
+\newcommand{\End}[0]{\mathrm{End}}
+\newcommand{\ev}[0]{\mathrm{ev}}
+\newcommand{\Ind}[0]{\mathrm{Ind}}
+\newcommand{\Res}[0]{\mathrm{Res}}
+\newcommand{\Coind}[0]{\mathrm{Coind}}
+\newcommand{\pmat}[4]{\begin{pmatrix}
+#1 & #2 \\
+#3 & #4
+\end{pmatrix}}
+\newcommand{\col}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\gr}[0]{\mathrm{gr}}
+\newcommand{\Var}[0]{\mathrm{Var}}
+\newcommand{\Sym}[0]{\mathrm{Sym} }
+\newcommand{\Rees}[0]{\mathrm{Rees} }
+\newcommand{\ad}[0]{\mathrm{ad}}
+\newcommand{\Ad}[0]{\mathrm{Ad}}
+\newcommand{\Rad}[0]{\mathrm{Rad}}
+\newcommand{\hgt}[0]{\mathrm{ht}}
+\newcommand{\res}[0]{\mathrm{res}}
+\newcommand{\pr}[0]{\mathrm{pr}}
+\newcommand{\act}[0]{\mathrm{act}}
+\newcommand{\Sing}{\mathrm{Sing}}
+\newcommand{\Der}{\mathrm{Der}}
+\newcommand{\ddx}{\frac {d}{dx}}
+\newcommand{\ddxi}[1]{\frac{d}{dx_{#1}}}
+\newcommand{\dd}[1]{\frac{d}{d{#1}}}
+\newcommand{\pp}[1]{\frac{\partial}{\partial{#1}}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ppx}{\frac{\partial}{\partial x}}
+\newcommand{\ppxi}[1]{\frac{\partial}{\partial x_{#1}}}
+\newcommand{\ddn}[2]{\frac{d^{#1}}{d{#2}^{#1}}}
+\newcommand{\ppn}[2]{\frac{\partial^{#1}}{\partial{#2}^{#1}}}
+\newcommand{\ddnx}[1]{\frac{d^{#1}}{dx^{#1}}}
+\newcommand{\ddnxi}[2]{\frac{d^{#1}}{dx_{#2}^{#1}}}
+\newcommand{\ppnx}[1]{\frac{\partial^{#1}}{\partial x^{#1}}}
+\newcommand{\ppnxi}[2]{\frac{\partial^{#1}}{\partial x_{#2}^{#1}}}
+
+\newcommand{\confusion}[0]{\textcolor{red}{(???)}}
+\newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
+\newcommand{\nts}[1]{\textcolor{red}{#1}}
+
+\renewcommand{\qedsymbol}{\includegraphics[height=2ex]{../../qed.png}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{claim}{Claim}[section]
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{exam}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+\newtheorem*{note}{Note}
+
+%assumption/warning box
+
+\setcounter{MaxMatrixCols}{20}
+
+\parindent 0pt
+
+\section*{Preface} 
+
+There will be some gaps in explanation, either due to the lecturer's admission or my own lack of understanding. In particular, many ``proofs" are sketches of proofs. Gaps due to my own misunderstanding will be indicated by three red question marks: \textcolor{red}{???}. More generally, my own questions about the material will also be in red. Things like ``\textbf{Question}" will be questions posed by the lecturer. Feel free to reach out to me with explanations. 
+
+\tableofcontents
+
+\newpage
+
+\section{Mar 24}
+
+D-modules are modules over rings of differential operators. There are three settings:
+
+\begin{enumerate}
+	\item $C^\infty$ case: We can consider differential operators on $\R^n$ of order $N$, which are expressions \begin{gather*}
+		u = \sum_{i_1+\cdots+i_n\le N} a_{i_1,\dots,i_n}(x)\frac{\partial^N}{\partial x_1^{i_1}\cdots \partial x_n^{i_n}},
+	\end{gather*} where the functions $a_\bullet(x)$ are smooth. 
+	\item Complex analytic setting: Similar, but replace $\R$ with $\C$ and require the functions $a_\bullet(x)$ are holomorphic.
+	\item Algebraic setting: Replace $\C$ with any field and require the functions $a_\bullet(x)$ to be polynomials. 
+\end{enumerate}
+
+We will work with smooth algebraic varieties over $\C$.
+
+\begin{rmk}
+	\begin{enumerate}
+		\item If $X$ is singular, the ring $\mc D(X)$ of differential operators might not be noetherian.
+		\item The theory of differential operators in positive characteristic is very different.
+		\item We can effectively replace $\C$ by any algebraically closed field of characteristic zero.
+	\end{enumerate}
+\end{rmk}
+
+Today $X$ is smooth and affine. $\mc O=\mc O(X)$ will denote the algebra of regular functions on $X$. We might not have coordinates on $X$, so we need to modify our definition of differential operators.\\
+
+Differential operators of order 0 are just multiplication by some $f\in\mc O$, denoted $m_f$. Differential operators of order 1 are $\xi + m_f$, where $f\in\mc O$ and $\xi$ is a vector field on $X$, i.e. an element of $T_X=\Der(\mc O,\mc O)$, i.e. a derivation $\mc O\to \mc O$. 
+
+\begin{defn}
+	The algebra $\mc D = \mc D(X)$ of differential operators on $X$ is defined as the subalgebra of $\End_\C(\mc O)$ generated by the operators of order 0 and 1 defined above. 
+\end{defn}
+
+Note that $\mc O+T_X$ sits as a subspace in $\mc D$. \\
+
+When $X=\C^n$, or more generally is an open subvariety of $\C^n$, then this definition agrees with the previous one using the induced coordinates from $\C^n$. 
+
+\subsection{Applications of D-modules}
+
+Fix $f\in\mc O$. Let $\Ann(f) = \{u\in \mc D\mid u(f)=0\}$. It is a left ideal in $\mc D$. We define $\mc D f $ to be $\mc D/\Ann(f)$, which is a $\mc D$-module. \\
+
+We can define $\mc Df$ for some $f\notin \mc O$:
+
+\begin{enumerate}
+	\item Let $X=\C$ and $f=e^x$. Certainly $f$ is not regular, but its annihilator is generated by $\ddx - 1$, so we can define $\mc D e^x = \mc D/(\ddx-1)$. 
+	\item Similarly we can define $\Ann(f)$ and hence $\mc Df$ for $X=\C$ and $f\in C^\infty(\R)$. 
+	\item Let $f\in\R[x_1,\dots,x_n]$ and let $U=\{x\in\R^n\mid f(x)\ge0\}$. Fix $\vphi\in C^\infty(U)$ with compact support. Let $I_\phi(\lambda)=\int_U\vphi(x)f(x)^\lambda dx$ for $\lambda\in\C$. Note that the exponentiation is well-defined because $f(x)\ge 0$. The integral converges when the real part of $\lambda$ is positive. Then \begin{thm}
+		The function $\lambda\mapsto I_\vphi(\lambda)$ extends to a meromorphic function on $\C$ with poles at a finite union of arithmetic progressions of the form $a,a-1,\dots$. 
+	\end{thm} \begin{proof}[Sketch]
+	Say $I_\vphi(\lambda)$ converges for $\lambda>N$ (at the start, we have $N=0$, but we proceed inductively). We compute \begin{gather*}
+		\dd \lambda I_\vphi(\lambda) = \int_U \vphi(x)\log f(x) f(x)^\lambda dx,
+	\end{gather*} which converges, so $I_\vphi(\lambda)$ is holomorphic when $\Real \lambda \ge N$. Our goal is to extend the function to $\Real \lambda \ge N-1$ inductively. We need: \begin{lem}[$b$-function]\label{lem:bfunction}
+	There exists $u\in\mc D(\C^n)[s]$ and $b\in\C[s]$ such that $u(f^{s+1})=b(s)f^s$. 
+	\end{lem} Assuming the lemma, we have \begin{gather*}
+	I_\vphi(\lambda) = \int_U\vphi(x)f(x)^\lambda dx = \int_U \vphi(x) \frac1{b(\lambda)}u(f(x)^{\lambda+1})dx \\
+	= \frac 1{b(\lambda)}\int_U(u^*(\vphi))(x)f(x)^{\lambda+1}dx,
+	\end{gather*} where at the end we have used essentially integration by parts, and $u^*\in\mc D(\C^n)[s]$ is the formal adjoint of $u$. For $\Real \lambda >N-1$ we can extend $I_\vphi(\lambda)$ using the above computation. 
+	\end{proof}
+\end{enumerate} 
+
+\begin{exam}[Examples of $b$-functions]
+	\begin{enumerate}
+		\item Let $f(x)=\sum x_i^2$ on $\C^n$. Then we can take $u=\sum\ppnxi 2i$ and $b(s)=4(s+1)(s+\frac n2)$. 
+		\item Let $f(x)=\det(x)$ on $\C^{n^2}=M_n(\C)$. Then for $u=\det(\ppxi{ij})$ one can compute $u(f^s)$ using Capelli identities and find that $b(s)=\prod\limits_{1\le k\le n}(s+k)$. 
+		\item If $f(x_1,\dots, x_n)=\prod\limits_{1\le i<j\le n}$, then the $b$-function is unknown. Can also generalize to arbitrary root systems.
+		\item If one takes the square of the above function, then the $b$-function is known, but is very complicated. 
+	\end{enumerate}
+\end{exam}
+
+\subsection{Nearby cycles}
+
+Let $f\in\C[x_1,\dots,x_n]$. Let $\Sing(f)=\{x\in\C^n\mid df(x)=0\}$. Fix $z_0\in \Sing(f)$. Take $0<\delta\ll \eps\ll 1$. We define the \textit{link} of $f$ at $z_0$ to be \begin{gather*}
+	L=L(f,z_0,\eps,\delta)=\{z\in\C^n\mid \norm{z-z_0}\le \eps, \norm{f(z)-f(z_0)}=\delta\}.
+\end{gather*} Topologically, $L$ is independent of $\delta,\eps$. \nts{there's a nice picture but seems hard to TiKz.} Let $S^1_\delta$ denote the circle of $w$ such that $\norm{w-f(z_0)}=\delta$. The family $H_p(L_w)$ forms a locally constant sheaf on $S^1_\delta$. For fixed $w$, there is a \textit{monodromy operator} $M_{f,p}:H_p(L_w)\to H_p(L_w)$. 
+
+\begin{thm}
+	If $b_f(\lambda)=0$, then $e^{2\pi i \lambda}$ is an eigenvalue of $M_{f,p}$ for some $p$. Moreover if $\Sing(f)=\{z_0\}$, then all eigenvalues of all $M_{f,p}$ arise in this way. 
+\end{thm}
+
+\subsection{Microlocal geometry}
+
+$\mc D(X)$ is a noncommutative deformation (aka quantization) of $\mc O(T^*X)$. \\
+
+For $f\in\mc O(X)$, we have $\Sing(f)\subset X$. We also have the $\mc D$-module $\mc Df$. To a $\mc D$-module we can define its singular support, which sits in $T^*X$. The following square commutes: % https://q.uiver.app/#q=WzAsNCxbMSwwLCJUXipYIl0sWzAsMCwiU1MoXFxtYyBEZikiXSxbMCwxLCJcXFNpbmcoZikiXSxbMSwxLCJYIl0sWzAsM10sWzEsMl0sWzEsMCwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{SS(\mc Df)} & {T^*X} \\
+	{\Sing(f)} & X
+	\arrow[hook, from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow[from=1-2, to=2-2]
+	\arrow[hook, from=2-1, to=2-2]
+\end{tikzcd}\] The singular support of $\mc Df$ can contain more information than just $\Sing(f)$. 
+
+\subsection{de Rham functor}
+
+There is a functor from the \nts{(derived?)} category of $\mc D(X)$-modules to the \nts{(derived?)} category of complexes of sheaves of $\C$-vector spaces on $X$. It restricts to a functor between the \nts{(derived?)} category of holonomic modules  to the category of perverse sheaves. This further restricts to an equivalence of categories between holonomic modules with regular singularities \nts{(or complexes with regular holonomic cohomology?)} to the category of perverse sheaves. 
+
+\end{document}
