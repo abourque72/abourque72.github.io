@@ -97,6 +97,7 @@
 \newcommand{\ddnxi}[2]{\frac{d^{#1}}{dx_{#2}^{#1}}}
 \newcommand{\ppnx}[1]{\frac{\partial^{#1}}{\partial x^{#1}}}
 \newcommand{\ppnxi}[2]{\frac{\partial^{#1}}{\partial x_{#2}^{#1}}}
+\newcommand{\Lie}{\mathrm{Lie}}
 
 \newcommand{\confusion}[0]{\textcolor{red}{(???)}}
 \newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
@@ -225,5 +226,101 @@ For $f\in\mc O(X)$, we have $\Sing(f)\subset X$. We also have the $\mc D$-module
 \subsection{de Rham functor}
 
 There is a functor from the \nts{(derived?)} category of $\mc D(X)$-modules to the \nts{(derived?)} category of complexes of sheaves of $\C$-vector spaces on $X$. It restricts to a functor between the \nts{(derived?)} category of holonomic modules  to the category of perverse sheaves. This further restricts to an equivalence of categories between holonomic modules with regular singularities \nts{(or complexes with regular holonomic cohomology?)} to the category of perverse sheaves. 
+
+\newpage
+
+\section{Mar 26}
+
+\subsection{Poincar\'e-Birkhoff-Witt (PBW) for differential operators}
+
+We continue to assume $X$ is smooth affine, and we write $\mc O,\mc D$ for $\mc O(X),\mc D(X)$. We let $T_X$ denote the space of vector fields. \\
+
+For $\xi\in T_X$ and $f,g\in\mc O$, we have the Liebniz formula $\xi(fg)=f\xi(g) + \xi(f)g$. In particular, in terms of operators, $\xi m_f - m_f\xi = m_{\xi(f)}$. Also, for $\eta\in T_X$, we have $\xi\eta-\eta\xi = [\xi,\eta]$, where $[-,-]$ is the (a priori abstract) Lie bracket of vector fields. It follows that $\mc D_1 = \mc O + T_X$ is a Lie algebra. $\mc O$ is an abelian Lie ideal and $T_X$ is a Lie subalgebra. We have a short exact sequence $0\to\mc O\to \mc D_1\to T_X\to 0$. The formula $\xi m_f - m_f \xi = m_{\xi(f)}$ also shows that $\mc D_1$ is an $\mc O$-bimodule, and that the left and right actions agree on $\mc D_1/\mc O$. 
+
+\begin{defn}
+	The \textbf{order filtration} on $\mc D$ is given by $\mc D_0=\mc O$, $\mc D_1 = \mc O+T_X$, and $\mc D_n$ is the image of the composition map $\mc D_1\otimes_{\mc O}\cdots \otimes_{\mc O} \mc D_1\to \mc D$. 
+\end{defn}
+
+We have \begin{itemize}
+	\item $\bigcup_n \mc D_n=\mc D$.
+	\item $\mc D_n$ is an $\mc O$-bimodule.
+	\item $\mc D_m\mc D_n\subset \mc D_{m+n}$. 
+\end{itemize}
+
+Let $\gr \mc D = \bigoplus (\mc D_n/\mc D_{n-1})$. Let $f\in \mc O$ and $\xi,\eta\in T_X$. Then $f\xi\equiv \xi f$ mod $\mc O$, so $\mc O=\mc D_0$ is a central subalgebra of $\gr\mc D$. Similarly, $\xi\eta \equiv \eta\xi$ mod $\mc D_1$, so $T_X=\mc D_1/\mc D_0$ is contained in $Z(\gr \mc D)$. We obtain a surjective graded algebra map $\mu:\Sym_{\mc O} T_X\to \gr \mc D$. 
+
+\begin{thm}[PBW for $\mc D$]\label{thm:PBWforD}
+	$\mu$ is an isomorphism.
+\end{thm} 
+
+\begin{proof}
+	It suffices to show that $\mu$ is injective. \\
+	
+	The cotangent bundle $T^*X$ is a vector bundle, so it admits an (attracting) algebraic $\C^\times$-action given by fiberwise scaling. This gives a grading $\mc O(T^*X)=\bigoplus_{n\ge 0} \mc O_n(T^*X)$, where $\mc O_n(T^*X)$ consists of functions that are fiberwise homogeneous of degree $n$. Now, there is a canonical isomorphism $\nu:\Sym^n_{\mc O}(T_X)\xr\sim \mc O_n(T^*X)$, where a product of vectors $\xi_1\cdots \xi_n$ is sent to the function taking $(x,\alpha)\in T^*X$ to $\prod \brac{(\xi_i)_x,\alpha}$. \\
+	
+	Now, there is a so-called principal symbol map that we will define in a moment, $\sigma_n:\mc D_n\to \mc O_n(T^*X)$, that sends $\mc D_{n-1}$ to 0, so it descends to a map $\ol\sigma_n : \mc D_n/\mc D_{n-1}\to \mc O_n(T^*X)$. We will check that the composite % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXFN5bV5uX3tcXG1jIE99VF9YIl0sWzEsMCwiXFxtYyBEX24vXFxtYyBEX3tuLTF9Il0sWzIsMCwiXFxtYyBPX24oVF4qWCkiXSxbMywwLCJcXFN5bV5uX3tcXG1jIE99VF9YIl0sWzAsMSwiXFxtdSJdLFsxLDIsIlxcb2xcXHNpZ21hX24iXSxbMiwzLCJcXG51XnstMX0iXV0=
+	\[\begin{tikzcd}
+		{\Sym^n_{\mc O}T_X} & {\mc D_n/\mc D_{n-1}} & {\mc O_n(T^*X)} & {\Sym^n_{\mc O}T_X}
+		\arrow["\mu", from=1-1, to=1-2]
+		\arrow["{\ol\sigma_n}", from=1-2, to=1-3]
+		\arrow["{\nu^{-1}}", from=1-3, to=1-4]
+	\end{tikzcd}\] is the identity, which implies $\mu$ is injective. \\
+	
+	Now we construct $\sigma_n$. Note that $\mc D$ acts on $\mc O[[t]]$ by $u(\sum f_it^i)=\sum u(f_i)t^i$. For fixed $f\in \mc O$, we have $e^{tf}=\sum \frac1{i!}f^it^i\in\mc O[[t]]$. \begin{claim}
+		\begin{enumerate}
+			\item For $u\in\mc D_n$, we have \begin{gather*}
+				u(e^{tf})=\bigp{ t^n\sigma_n(u,f) + \text{ lower degree terms} }e^{tf},
+			\end{gather*} where $\sigma_n(u,f),A\in\mc O$. 
+			\item If $u\in\mc D_{n-1}$, then $\sigma_n(u,f)=0$. 
+			\item We have \begin{gather*}
+				\sigma_n(\xi_1\cdots\xi_n,f)(x)=\prod \pair{(\xi_i)_x}{d_xf} = \nu(\xi_1\cdots\xi_n)(d_xf).
+			\end{gather*}
+		\end{enumerate}
+	\end{claim}
+	\begin{proof}[Proof of Claim]
+		First we have \begin{gather*}
+			\xi e^{tf}=t\xi(f)e^{tf}=t\brac{\xi,df}e^{tf}.
+		\end{gather*} Then we have \begin{gather*}
+			\xi_1\xi_2e^{tf}=t^2\xi_1(f)\xi_2(f)e^{tf}+t\xi_1\xi_2(f)e^{tf}=\bigp{t^2\pair{\xi_1}{df}\pair{\xi_2}{df} + t\xi_1\xi_2(f) }e^{tf}.
+		\end{gather*} And from here the pattern is clear.
+	\end{proof} This claim both gives the construction of $\sigma_n$ and shows that the previous composition is the identity, so we are done. \nts{I want to check this in more detail I think}
+\end{proof}
+
+\begin{rmk}
+	PBW and its proof work in the $C^\infty$ or complex analytic settings.
+\end{rmk}
+
+\subsection{An application to the PBW theorem for Lie algebras}
+
+Let $\mf g$ be a Lie algebra, and let $\mc U\mf g$ be its universal enveloping algebra. Lecturer: ``since this is not a course on Lie algebras, I'm not supposed to explain what it is." $\mc U\mf g$ has a PBW filtration defined in a very similar way to the order filtration. In particular $\mc U_0\mf g = \C$ and $\mc U_1\mf g = \C+\mf g$. Furthermore, the relations of $\mc U\mf g$ imply that we get a surjective graded algebra map $\mu:\Sym_\C\mf g\to \gr\mc U\mf g$. The PBW theorem (for Lie algebras) asserts that $\mu$ is an isomorphism. It is not easy, but if we assume that $\mf g$ is the Lie algebra of a Lie group or affine algebraic group $\mf g$, then it is easy. 
+
+\begin{note}
+	It is in fact true that every $\mf g$ comes from a $G$, but the proof is no easier than PBW, and in some cases one uses PBW in the proof.
+\end{note}
+
+We can identify $\mf g$ with $(T_G)^G$, i.e. left-invariant vector fields on $G$, as well as with $T_eG$. (At least one of these is the definition of $\Lie G$, depending on your conventions.) We get a map $\mf g \to \mc D(G)^G$ by sending a vector field to its corresponding differential operator, which gives a map $\tau:\mc U\mf g\to \mc D(G)^G$. 
+
+\begin{thm}
+	\begin{enumerate}
+		\item The map $\tau$ is an algebra isomorphism.
+		\item PBW for $\mc U\mf g$ is true.
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+	By construction, $\tau(\mc U_n\mf g)\subset \mc D_n(G)^G$, so there is an induced graded map $\gr(\tau):\gr\mc U\mf g\to \gr\mc D(G)^G$. We then have the following commutative diagram: % https://q.uiver.app/#q=WzAsNixbMCwwLCJcXFN5bV5uX1xcQ1xcbWYgZyJdLFsxLDAsIlxcU3ltXm5fe1xcbWMgT30oKFRfRyleRykiXSxbMiwwLCIoXFxTeW1ebl97XFxtYyBPfVRfRyleRyJdLFsyLDEsIihcXG1jIERfbihHKS9cXG1jIERfe24tMX0oRykpXkciXSxbMCwxLCJcXG1jIFVfblxcbWYgZy9cXG1jIFVfe24tMX1cXG1mIGciXSxbMSwxLCJcXG1jIERfbihHKV5HL1xcbWMgRF97bi0xfShHKV5HIl0sWzAsMSwiXFxzaW0iXSxbMSwyLCJcXHNpbSJdLFsyLDMsIlxcc2ltXFx0ZXh0e2J5IFBCVyBmb3IgfVxcbWMgRCJdLFswLDQsIlxcbXVfbiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDUsIlxcZ3JfbihcXHRhdSkiLDJdLFs1LDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
+	\[\begin{tikzcd}
+		{\Sym^n_\C\mf g} & {\Sym^n_{\mc O}((T_G)^G)} & {(\Sym^n_{\mc O}T_G)^G} \\
+		{\mc U_n\mf g/\mc U_{n-1}\mf g} & {\mc D_n(G)^G/\mc D_{n-1}(G)^G} & {(\mc D_n(G)/\mc D_{n-1}(G))^G}
+		\arrow["\sim", from=1-1, to=1-2]
+		\arrow["{\mu_n}"', two heads, from=1-1, to=2-1]
+		\arrow["\sim", from=1-2, to=1-3]
+		\arrow["{\sim\text{by PBW for }\mc D}", from=1-3, to=2-3]
+		\arrow["{\gr_n(\tau)}"', from=2-1, to=2-2]
+		\arrow[hook, from=2-2, to=2-3]
+	\end{tikzcd}\] The right map on the bottom is injective because $\mc D_n(G)^G\cap \mc D_{n-1}(G)=\mc D_{n-1}(G)^G$. It follows that all arrows are isomorphisms, so we get that $\Sym_\C\mf g\to \gr\mc U\mf g$ and $\gr \mc U\mf g\to \gr \mc D(G)^G$ are both isomorphisms. The former isomorphism is PBW, and the latter isomorphism implies $\tau$ is an isomorphism, so we are done.  
+\end{proof}
+
+We now discuss another formulation of $\mc D(X)$. By the lecturer's admission, this may be wrong as it was done on the spot. We have $\mc D(X) = \mc U_\C(\mc O+T_X)/(f\otimes \xi = f\xi; 1_{\mc D}=1_{\mc O}=1_{\mc U})$. The proof uses PBW to show that the associated graded algebras agree. 
 
 \end{document}
