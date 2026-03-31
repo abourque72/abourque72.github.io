@@ -36,7 +36,7 @@
 \newcommand{\Real}[0]{\mathrm{Re}}
 \newcommand{\Imag}[0]{\mathrm{Im}}
 \newcommand{\xr}[1]{\xrightarrow{#1}}
-\newcommand{\Rmod}[1]{{#1}\mathrm{-mod}}
+\newcommand{\Rmod}[1]{{#1}\text{-}\mathrm{mod}}
 \newcommand{\Zmodn}[1]{\mathbb Z/{#1}\mathbb Z}
 \newcommand{\brac}[1]{\langle {#1} \rangle}
 \newcommand{\pair}[2]{\langle {#1}, {#2} \rangle}
@@ -98,6 +98,9 @@
 \newcommand{\ppnx}[1]{\frac{\partial^{#1}}{\partial x^{#1}}}
 \newcommand{\ppnxi}[2]{\frac{\partial^{#1}}{\partial x_{#2}^{#1}}}
 \newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\Vect}{\mathrm{Vect}}
+\newcommand{\Loc}{\mathrm{Loc}}
+\newcommand{\QC}{\mathrm{QCoh}}
 
 \newcommand{\confusion}[0]{\textcolor{red}{(???)}}
 \newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
@@ -322,5 +325,107 @@ We can identify $\mf g$ with $(T_G)^G$, i.e. left-invariant vector fields on $G$
 \end{proof}
 
 We now discuss another formulation of $\mc D(X)$. By the lecturer's admission, this may be wrong as it was done on the spot. We have $\mc D(X) = \mc U_\C(\mc O+T_X)/(f\otimes \xi = f\xi; 1_{\mc D}=1_{\mc O}=1_{\mc U})$. The proof uses PBW to show that the associated graded algebras agree. 
+
+\newpage
+
+\section{Mar 31}
+
+\subsection{Sheaves of differential operators}
+
+Let $X$ be an irreducible affine. Then $\mc O(X)$ is a domain. For any nonzero $f\in\mc O(X)$, we have the basic open $X_f=\{x\in X\mid f(x)\ne 0\}$. It is affine with coordinate ring $\mc O(X)_f = \mc O(X)[\frac1f]$. \\
+
+Now assume $X$ is not necessarily affine. Facts: \begin{enumerate}
+	\item A sheaf $\mc E$ of $\mc O_X$-modules is quasicoherent if and only if for every open affine $U\subset X$ and nonzero $f\in\mc O(U)$, the map \begin{gather}\label{eq:qcoh}
+		\Gamma(U,\mc E)_f := \mc O(U_f)\otimes_{\mc O(U)}\Gamma(U,\mc E)\to \Gamma(U_f,\mc E)
+	\end{gather} is an isomorphism. In this case/equivalently, for all affine opens $V\subset U$, there is an isomorphism \begin{gather*}
+	\mc O(V)\otimes_{\mc O(U)}\Gamma(U,\mc E)\to \Gamma(V,\mc E).
+	\end{gather*} 
+	\item If $X$ is affine, then the map \begin{gather*}
+		\Sym^n_{\mc O(X)}\Gamma(X,\mc E)\to \Gamma(X,\Sym^n_{\mc O_X}\mc E)
+	\end{gather*} is an isomorphism.
+\end{enumerate}
+
+Continue assuming $X$ is arbitrary. Suppose to every open affine $U\subset X$ we associate an $\mc O(U)$-module $\mc E(U)$, such that there are compatible restriction maps $\res:\mc E(U)\to \mc E(U_f)$. For $x\in X$ we define $\mc E_x = \varinjlim\mc E(U)$, with the colimit taken over open affines $U$ containing $x$. This gives a sheaf of $\mc O_X$ modules that we denote by $\mc E$. If the map \ref{eq:qcoh} is an isomorphism, then $\mc E$ is quasicoherent. If $X$ is affine, then there is a map $\mc E(X)\to \Gamma(X,\mc E)$. If the map \ref{eq:qcoh} is an isomorphism, then so is $\mc E(X)\to\Gamma(X,\mc E)$. \\
+
+Let $T_X$ be the tangent sheaf on $X$. If $X$ is affine, we put $\Vect(X)=\Gamma(X,T_X)$. We define $\Sym^n\Vect(X)$ to be $\Sym^n_{\mc O(X)}\Vect(X) = \Gamma(X,\Sym^n_{\mc O_X}T_X)$. \\
+
+Recall that when $X$ is smooth affine, we have a PBW filtration on $\mc D(X)$ by $\mc O(X)$-bimodules, and the PBW theorem asserts there are short exact sequences \begin{gather*}
+	0\to \mc D_{n-1}(X) \to \mc D_n(X) \xr{\sigma_n} \Sym^n\Vect(X)\to 0.
+\end{gather*} 
+
+\begin{prop}
+	Let $X$ be smooth affine and irreducible, and let $f\in\mc O(X)$ be nonzero. \begin{enumerate}
+		\item For all $u\in\mc D_n(X)$, there is a unique $u_f\in\mc D_n(X_f)$ such that the map $u_f:\mc O(X_f)\to \mc O(X_f)$ extends that of $u$.
+		\item $\sigma_n(u_f)=\sigma_n(u)|_{X_f}$.
+		\item The maps \begin{gather*}
+			\mc O(X_f)\otimes_{\mc O(X)}\mc D_n(X)\to \mc D_n(X_f)\ot \mc D_n(X)\otimes_{\mc O(X)}\mc O(X_f)
+		\end{gather*} are isomorphisms.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	We induct on $n$. For $n=0$ the statement is clear \nts{check!}. For $n=1$ we use the fact that vector fields, i.e. derivations, can be extended to localizations via the quotient rule \nts{check in more detail!}. For $n>1$, we use linearity to reduce to the case where $u$ is a product of vector fields. As in the $n=1$ case, we extend $u$ by extending each vector field. This gives existence, but we need uniqueness, since linear combinations are not unique. Suppose we have two extensions $u_f,u'_f$. Then $u_f-u'_f$ extends $0\in\mc D_n(X)$. From the way we constructed extensions, we see that $\sigma_n(u_f)=\sigma_n(u)|_{X_f}=\sigma_n(u_f')$. Then $u_f-u_f'\in\ker\sigma_n=\mc D_{n-1}(X_f)$, so by induction it is 0. \nts{I have a problem with this proof, which is when we use symbols. We don't know that any two extensions come from taking linear combinations...} This shows (1) and (2). For (3), introduce the notation $\mc O = \mc O(X)$ and $\mc O_f = \mc O(X_f)$. The functor $\mc O_f\otimes_{\mc O}-$ is exact, so we have the following commutative diagram with exact rows: % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcbWMgT19mXFxvdGltZXNfe1xcbWMgT31cXG1jIERfe24tMX0oWCkiXSxbMiwwLCJcXG1jIE9fZlxcb3RpbWVzX3tcXG1jIE99XFxtYyBEX24oWCkiXSxbMywwLCJcXG1jIE9fZlxcb3RpbWVzX3tcXG1jIE99XFxTeW1eblxcVmVjdChYKSJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzAsMSwiMCJdLFsxLDEsIlxcbWMgRF97bi0xfShYX2YpIl0sWzIsMSwiXFxtYyBEX24oWF9mKSJdLFszLDEsIlxcU3ltXm5cXFZlY3QoWF9mKSJdLFswLDFdLFs2LDddLFsxLDJdLFs3LDhdLFs4LDldLFsyLDNdLFszLDRdLFs5LDVdLFszLDldLFsyLDhdLFsxLDddXQ==
+	\[\begin{tikzcd}
+		0 & {\mc O_f\otimes_{\mc O}\mc D_{n-1}(X)} & {\mc O_f\otimes_{\mc O}\mc D_n(X)} & {\mc O_f\otimes_{\mc O}\Sym^n\Vect(X)} & 0 \\
+		0 & {\mc D_{n-1}(X_f)} & {\mc D_n(X_f)} & {\Sym^n\Vect(X_f)} & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=1-4, to=2-4]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+	\end{tikzcd}\] The left vertical arrow is an isomorphism by induction, and the right vertical arrow is an isomorphism by general algebraic geometry. Thus the middle vertical arrow is an isomorphism as desired.
+\end{proof}
+
+As a consequence, for all smooth (irreducible) $X$, we have a quasicoherent sheaf of left/right $\mc O_X$ modules $\mc D_{X,n}$. Furthermore, we have a short exact sequence \begin{gather*}
+	0\to \mc D_{X,n-1}\to \mc D_{X,n}\to \Sym^nT_X\to 0.
+\end{gather*} By induction on $n$, using the fact that $\mc D_{X,0}=\mc O_X$ and $\Sym^n T_X$ are coherent, we find that $\mc D_{X,n}$ is in fact coherent. We can then take $\mc D_X = \bigcup_n \mc D_{X,n}$, a quasicoherent sheaf of associative algebras. PBW implies $\gr\mc D_X\cong \Sym T_X$.
+
+\subsection{Twisted differential operators (TDO)}
+
+Let $\mc L$ be a line bundle on $X$. Let $\mc D_{X,\mc L}=\mc L\otimes_{\mc O_X}\mc D_X\otimes_{\mc O_X}\mc L^{-1}$. Here $\mc L^{-1}$ is the dual bundle to $\mc L$, sometimes denoted $\mc L^\vee$ or $\mc L^*$. 
+
+\begin{claim}
+	$\mc D_{X,L}$ has the structure of a sheaf of associative algebras.
+\end{claim}
+
+\begin{proof}
+	Let $u_1,u_2$ be local sections of $\mc D_X$. Let $\alpha_1,\alpha_2$ be local sections of $\mc L$. Let $\beta_1,\beta_2$ be local sections of $\mc L^{-1}$. We define $(\alpha_1u_1\beta_1)(\alpha_2u_2\beta_2)$ to be $\alpha_1(u_1 m_{\pair{\beta_1}{\alpha_2}})u_2)\beta_2$. 
+\end{proof}
+
+There is also a natural action of $\mc D_{X,\mc L}$ on $\mc L$, given on local sections by $(\alpha_1u\beta)\alpha_2 = u(\pair{\beta}{\alpha_2})\alpha_1$. \\
+
+Replacing $\mc D_X$ by $\mc D_{X,n}$ in the definition of $\mc D_{X,\mc L}$ gives a sheaf we call $\mc D_{X,\mc L,n}$, giving a PBW filtration on $\mc D_{X,\mc L}$. We have \begin{gather*}
+	\gr \mc D_{X,\mc L}=\mc L\otimes_{\mc O_X}\gr\mc D_X\otimes_{\mc O_X}\mc L^{-1} = \gr \mc D_X,
+\end{gather*} where we can cancel $\mc L$ and $\mc L^{-1}$ since $\gr\mc D_X$ is an ordinary sheaf of $\mc O_X$ modules, i.e. there is no distinction between left and right. 
+
+\begin{defn}
+	A $\mc D_X$-\textbf{module} is a quasicoherent sheaf $\mc M$ such that for all open $U\subset X$, we have an action \begin{gather*}
+		\Gamma(U,\mc D_X)\times \Gamma(U,\mc M)\to \Gamma(U,\mc M).
+	\end{gather*}
+\end{defn}
+
+Recall $\mc D_X=\mc U(\mc O_X+ T_X)/(f\otimes u = fu\forall f\in \mc O_X,u\in \mc D_{X,1}; 1_{\mc U}=1_{\mc O_X})$. Thus, a $\mc D_X$-module is the same as a quasicoherent sheaf $\mc M$ with a ``flat connection", i.e. maps $\nabla_\xi$ for $\xi\in T_X$ acting on local sections of $\mc M$ such that $\nabla_\xi(fm)=f\nabla_\xi m + \xi(f)m$ and $\nabla_{[\xi,\eta]}=[\nabla_\xi,\nabla_\eta]$. \\
+
+For a $\mc D_X$-module $\mc M$, $\Gamma(X,\mc M)$ is a module over $\Gamma(X,\mc D_X)=\mc D(X)$. In particular, $\Gamma(X,-)$ gives a functor from $\mc D_X$-modules to $\mc D(X)$-modules. It has a left adjoint called the localization functor $\Loc$, given by $\Loc(M)=\mc D_X\otimes_{\mc D(X)}M$. In particular, for an affine open $U\subset X$, we have $\Gamma(U,\Loc(M))=\mc D(U)\otimes_{\mc D(X)}M$. \\
+
+If $X$ is affine, $\Gamma(X,-)$ is an equivalence $\QC(X)\to \mc O(X)$-mod with inverse $M\mapsto \mc O_X\otimes_{\mc O(X)}M$. Using the map \ref{eq:qcoh}, one can show that this restricted map from $\mc D_X$-modules to $\mc D(X)$-modules is also an equivalence (when $X$ is affine).
+
+\subsection{Beilinson-Bernstein localization theorem}
+
+Let $G$ be a connected semisimple algebraic group with fixed Borel subgroup $B$. Let $\mc B=G/B$ be the flag variety. 
+
+\begin{thm}[Beilinson-Bernstein Localization Theorem]
+	$\Gamma(\mc B,-):\Rmod{\mc D_{\mc B}}\to \Rmod{\mc D(\mc B)}$ is an equivalence with inverse $\Loc$.
+\end{thm}
+
+\begin{rmk}
+	A similar statement holds for all partial flag varieties $G/P$ with $P$ parabolic. In particular, it holds for projective spaces. Historically, this statement was first shown for projective spaces in a much simpler way. 
+\end{rmk}
 
 \end{document}
