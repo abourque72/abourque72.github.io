@@ -101,6 +101,12 @@
 \newcommand{\Vect}{\mathrm{Vect}}
 \newcommand{\Loc}{\mathrm{Loc}}
 \newcommand{\QC}{\mathrm{QCoh}}
+\newcommand{\hc}{\mathrm{hc}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\sln}[1]{\mathfrak{sl}_{#1}}
+\newcommand{\gln}[1]{\mathfrak{gl}_{#1}}
+\newcommand{\p}{\partial}
+\newcommand{\Eu}{\mathrm{Eu}}
 
 \newcommand{\confusion}[0]{\textcolor{red}{(???)}}
 \newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
@@ -364,7 +370,15 @@ Recall that when $X$ is smooth affine, we have a PBW filtration on $\mc D(X)$ by
 \end{prop}
 
 \begin{proof}
-	We induct on $n$. For $n=0$ the statement is clear \nts{check!}. For $n=1$ we use the fact that vector fields, i.e. derivations, can be extended to localizations via the quotient rule \nts{check in more detail!}. For $n>1$, we use linearity to reduce to the case where $u$ is a product of vector fields. As in the $n=1$ case, we extend $u$ by extending each vector field. This gives existence, but we need uniqueness, since linear combinations are not unique. Suppose we have two extensions $u_f,u'_f$. Then $u_f-u'_f$ extends $0\in\mc D_n(X)$. From the way we constructed extensions, we see that $\sigma_n(u_f)=\sigma_n(u)|_{X_f}=\sigma_n(u_f')$. Then $u_f-u_f'\in\ker\sigma_n=\mc D_{n-1}(X_f)$, so by induction it is 0. \nts{I have a problem with this proof, which is when we use symbols. We don't know that any two extensions come from taking linear combinations...} This shows (1) and (2). For (3), introduce the notation $\mc O = \mc O(X)$ and $\mc O_f = \mc O(X_f)$. The functor $\mc O_f\otimes_{\mc O}-$ is exact, so we have the following commutative diagram with exact rows: % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcbWMgT19mXFxvdGltZXNfe1xcbWMgT31cXG1jIERfe24tMX0oWCkiXSxbMiwwLCJcXG1jIE9fZlxcb3RpbWVzX3tcXG1jIE99XFxtYyBEX24oWCkiXSxbMywwLCJcXG1jIE9fZlxcb3RpbWVzX3tcXG1jIE99XFxTeW1eblxcVmVjdChYKSJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzAsMSwiMCJdLFsxLDEsIlxcbWMgRF97bi0xfShYX2YpIl0sWzIsMSwiXFxtYyBEX24oWF9mKSJdLFszLDEsIlxcU3ltXm5cXFZlY3QoWF9mKSJdLFswLDFdLFs2LDddLFsxLDJdLFs3LDhdLFs4LDldLFsyLDNdLFszLDRdLFs5LDVdLFszLDldLFsyLDhdLFsxLDddXQ==
+	We induct on $n$. For $n=0$ the statement is clear \nts{check!}. For $n=1$ we use the fact that vector fields, i.e. derivations, can be extended to localizations via the quotient rule \nts{check in more detail!}. For $n>1$, we use linearity to reduce to the case where $u$ is a product of vector fields. As in the $n=1$ case, we extend $u$ by extending each vector field. This gives existence, but we need uniqueness, since linear combinations are not unique. Suppose we have two extensions $u_f,u'_f$. Then $u_f-u'_f$ extends $0\in\mc D_n(X)$. From the way we constructed extensions, we see that $\sigma_n(u_f)=\sigma_n(u)|_{X_f}=\sigma_n(u_f')$. Then $u_f-u_f'\in\ker\sigma_n=\mc D_{n-1}(X_f)$, so by induction it is 0. \nts{I have a problem with this proof, which is when we use symbols. We don't know that any two extensions come from taking linear combinations...} This shows (1) and (2).\\ 
+	
+	\begin{note}
+		Here's another proof that the only extension of $0$ is $0$ by induction on the order, due to Dragos Crisan. Let $u$ be an extension of 0, and let $a\in\mc O$. Then for any $n$, \begin{gather*}
+			0=u(a)=u(f^na/f^n)=f^nu(a/f^n)+[u,m_{f^n}](a/f^n).
+		\end{gather*} The operator $[u,m_{f^n}]$ has an order strictly smaller than that of $u$, so by induction $[u,m_{f^n}](a/f^n)=0$. Then we have $0 = f^nu(a/f^n)$, so $u(a/f^n)=0$, so $u=0$ as desired. \\
+	\end{note}
+	
+	For (3), introduce the notation $\mc O = \mc O(X)$ and $\mc O_f = \mc O(X_f)$. The functor $\mc O_f\otimes_{\mc O}-$ is exact, so we have the following commutative diagram with exact rows: % https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcbWMgT19mXFxvdGltZXNfe1xcbWMgT31cXG1jIERfe24tMX0oWCkiXSxbMiwwLCJcXG1jIE9fZlxcb3RpbWVzX3tcXG1jIE99XFxtYyBEX24oWCkiXSxbMywwLCJcXG1jIE9fZlxcb3RpbWVzX3tcXG1jIE99XFxTeW1eblxcVmVjdChYKSJdLFs0LDAsIjAiXSxbNCwxLCIwIl0sWzAsMSwiMCJdLFsxLDEsIlxcbWMgRF97bi0xfShYX2YpIl0sWzIsMSwiXFxtYyBEX24oWF9mKSJdLFszLDEsIlxcU3ltXm5cXFZlY3QoWF9mKSJdLFswLDFdLFs2LDddLFsxLDJdLFs3LDhdLFs4LDldLFsyLDNdLFszLDRdLFs5LDVdLFszLDldLFsyLDhdLFsxLDddXQ==
 	\[\begin{tikzcd}
 		0 & {\mc O_f\otimes_{\mc O}\mc D_{n-1}(X)} & {\mc O_f\otimes_{\mc O}\mc D_n(X)} & {\mc O_f\otimes_{\mc O}\Sym^n\Vect(X)} & 0 \\
 		0 & {\mc D_{n-1}(X_f)} & {\mc D_n(X_f)} & {\Sym^n\Vect(X_f)} & 0
@@ -537,5 +551,614 @@ Let an algebraic group $G$ act on a variety $X$. Let $E\xr p X$ be a vector bund
 \end{enumerate}
 
 Let $\mc E$ be the sheaf of sections of $E$, and let $\mf g = \Lie G$. There is a Lie derivative map which associates to $\xi\in\mf g$ a map $\nabla_\xi:\mc E\to\mc E$. In the analytic setting, $\nabla_\xi(s)=\dd t(e^{-t\xi}(s))|_{t=0}$. There is an algebraic way to make sense of this as well.
+
+\newpage
+
+%\section{Apr 7}
+
+%We now give a ``correct" definition of $\mc O(\lambda)$ for any character $\lambda\in X^*(T)$. We can embed $X^*(T)\into \mf t^*$ By \nts{todo}
+
+%\newpage
+
+%\section{Apr 9}
+
+%\nts{todo}
+
+%\newpage
+
+\section{Apr 7}
+
+Notes for this day provided by L\'eo Gratien.
+
+\subsection{Example of $SL_2$}
+\begin{itemize}
+	\item $G=SL_2$ acts on $\mathbb C^2$ and
+	\[
+	N=\left\{\begin{pmatrix}1&*\\0&1\end{pmatrix}\right\}=\operatorname{Stab}_G\binom{1}{0}.
+	\]
+	\item $G/N=\mathbb C^2\setminus 0$ is quasi-affine. By Hartogs $\mathcal O(G/N)=\mathbb C[x,y]$.
+	\item $G\times T$ acts on $G/N$ by left and right actions.
+	\item $T=\mathbb C^*\subset G/N$ acts via $t:v\mapsto t^{-1}v$.
+	\item $\mathfrak t$ is $1$-dimensional and $h$ maps to the Euler vector field, $-Eu=x\partial_x+y\partial_y.$
+	\item $\mathfrak{sl}_2$ acts via
+	\[
+	e\mapsto x\partial_y,
+	\qquad
+	f\mapsto y\partial_x,
+	\qquad
+	h\mapsto x\partial_x-y\partial_y.
+	\]
+	This gives
+	\[
+	\mathfrak g\times \mathfrak t\longrightarrow \operatorname{Vect}(G/N).
+	\]
+	
+	and in turn an algebra map
+	\[
+	U(\mathfrak g\times \mathfrak t)=U(\mathfrak g)\otimes U(\mathfrak t)
+	\longrightarrow
+	\mathcal D(G/N).
+	\]
+\end{itemize}
+\subsection{}
+Let $\mathcal D(G/N)^G$ be the subalgebra of right-invariant translations for $G$.
+
+\begin{lem}
+	\[
+	\alpha:U(\mathfrak t)\xrightarrow{\sim}\mathcal D(G/N)^G
+	\]
+	is an isomorphism.
+\end{lem}
+
+\begin{proof}
+	Look at the associated graded:
+	\[
+	\operatorname{gr}\bigl(U(\mathfrak t)\bigr)=\mathbb C[\mathfrak t^*]
+	\longrightarrow
+	\operatorname{gr}\bigl(\mathcal D(G/N)^G\bigr)
+	\hookrightarrow
+	\operatorname{gr}\bigl(\mathcal D(G/N)\bigr)^G
+	\]
+	with
+	\[
+	\operatorname{gr}\bigl(\mathcal D(G/N)\bigr)^G
+	\cong
+	\mathcal O\bigl(T^*(G/N)\bigr)^G.
+	\]
+	
+	We will identify the geometric incarnation of the latter with the moment map
+	\[
+	T^*(G/N)//G\longrightarrow \mathfrak t^*.
+	\]
+	Recall that $T^*(G/N)=G\times^N T_e^*$ ; hence $\mathcal O\bigl(T^*(G/N)\bigr)^G=\mathcal O(T_e^*)^N$. Moreover we have a map
+	\[
+	\phi:T_e^*=(\mathfrak g/\mathfrak n)^*\xrightarrow{\operatorname{res}}(\mathfrak b/\mathfrak n)^*=\mathfrak t^*.
+	\]
+	Observe :
+	\begin{enumerate}
+		\item The above construction coincides with the map $\operatorname{gr}(\alpha)$ :
+		\[
+		T^*(G/N)=G\times^N T_e^*\longrightarrow \mathfrak t^*,
+		\qquad
+		(gN/N,\alpha)\longmapsto \alpha\vert_{\mathfrak b/\mathfrak n},
+		\]
+		\item An algebra isomorphism
+		\[
+		\phi^*:\mathbb C[\mathfrak t^*]\longrightarrow \mathbb C[(\mathfrak g/\mathfrak n)^*]^N.
+		\]
+	\end{enumerate}
+	
+	\textit{Justification of 2}. Using a Killing form, one identifies
+	\[
+	\mathfrak t^*\cong \mathfrak t,
+	\qquad
+	(\mathfrak g/\mathfrak n)^*\cong \mathfrak n^{\perp}\cong \mathfrak b,
+	\]
+	
+	and then $\phi:\mathfrak b\to \mathfrak t$ is given, for sufficiently general $h\in \mathfrak t$, by
+	\[
+	N\cdot h\longmapsto h.
+	\]
+\end{proof}
+
+\subsection{Harish-Chandra homomorphism}
+
+Let $Z(\mathfrak g)\subset U(\mathfrak g)$ be the center. The \textit{Harish-Chandra homomorphism} is the algebra map
+\[
+Z(\mathfrak g)\xrightarrow{hc}\mathcal D(G/N)^G\cong U(\mathfrak t).
+\]
+
+\begin{rmk}
+	The right action of the center is given by the left action.
+\end{rmk} 
+
+\subsection{}
+\[
+p: G/N\xrightarrow{T}\mathcal B
+\]
+is a principal $T$-bundle. We have an action of $T$ on $G/N\times \mathbb C_\alpha$, for $\alpha\in X^*(T)$:
+\[
+t\cdot(gN/N,z)=\bigl(gt^{-1}N/N,\alpha(t)z\bigr).
+\]
+It gives rise to a line bundle $L_\alpha:=G/N\times^T \mathbb C_\alpha$ on $\mathcal B$.
+
+\subsection{}
+$G$ acts on $L_\alpha$ by
+\[
+g_0:(gN/N,z)\longmapsto (g_0gN/N,z).
+\]
+
+Local sections of $L_\alpha$ give a sheaf $\mathcal O(\alpha)$.
+
+\begin{rmk} One see the lattice of character as linear functionals on the Lie torus
+	\[
+	X^*(T)\hookrightarrow \mathfrak t^*,
+	\qquad
+	\xi\in \mathfrak t\longmapsto \xi_{\mathcal B}\in \operatorname{Vect}(G/N).
+	\]
+\end{rmk}
+
+\subsection{Description of the locally free sheaf $\mathcal O(\alpha)$.}
+It is a
+$\mathcal O_{\mathcal B}$-module of rank $1$. Let $U\subset \mathcal B$ be an open affine. Then
+\[
+\Gamma(U,\mathcal O(\alpha))=
+\left\{
+f:p^{-1}(U)\to \mathbb C\ \middle|\ f(gt\mathcal B/\mathcal B)=\alpha(t)\,f(g\mathcal B/\mathcal B)
+\right\}.
+\]
+
+Recall the TDO algebra $\mathcal D_\lambda=\mathcal O(\lambda)\otimes \mathcal D_{\mathcal B}\otimes \mathcal O(-\lambda).$ 
+
+The projection $p$ entails \[\begin{tikzcd}
+	{\mathcal D\bigl(p^{-1}(U)\bigr)^T} && {\mathcal D_\lambda(U)} \\
+	{U(\mathfrak t)} & {Z\Bigl(\mathcal D\bigl(p^{-1}(U)\bigr)^T\Bigr)}
+	\arrow[from=1-1, to=1-3]
+	\arrow[hook, from=2-1, to=1-1]
+	\arrow[from=2-1, to=2-2]
+	\arrow[hook, from=2-2, to=1-1]
+\end{tikzcd}\]
+
+with the central map coming from $\xi\in \mathfrak t\longmapsto \lambda(\xi)\cdot \operatorname{Id}.$
+
+\medskip
+
+\begin{prop}\[
+	\Gamma(U,\mathcal D_\lambda)=\mathcal D\bigl(p^{-1}(U)\bigr)^T/I,
+	\]
+	where $I$ is the two-sided ideal generated by $\xi-\lambda(\xi),\qquad \xi\in \mathfrak t.$ 
+\end{prop}
+
+Now $z\in Z(\mathfrak g)$ acts on $\mathcal D_\lambda(U)$. How? Through the HC homomorphism:
+\[
+hc(z)\in U(\mathfrak t)=\mathbb C[\mathfrak t^*],
+\qquad
+hc(z)(\lambda)\in \mathbb C.
+\]
+
+\subsection{A concrete statement}
+Denote $\chi_\lambda:Z(\mathfrak g)\rightarrow \mathbb C, z\mapsto hc(z)(\lambda)$, the algebra character.
+
+$\ker(\chi_\lambda)$ is a maximal ideal in $Z(\mathfrak g)$ and gives
+\[
+I_\lambda:=U\mathfrak g\cdot \ker\chi_\lambda=\ker\chi_\lambda\cdot U\mathfrak g,
+\] a two-sided ideal.
+\begin{thm}[Beilinson-Bernstein, part 1]
+	\begin{enumerate}
+		\item The map
+		\[
+		U\mathfrak g\longrightarrow \Gamma(\mathcal B,\mathcal D_\lambda)
+		\]
+		factors through an algebra isomorphism
+		\[
+		U\mathfrak g/I_\lambda\xrightarrow{\sim}\Gamma(\mathcal B,\mathcal D_\lambda).
+		\]
+		\item In particular,
+		\[
+		\mathcal D(G/B)\cong U\mathfrak g/\ker\chi_0\,U\mathfrak g
+		\cong U\mathfrak g/(U\mathfrak g)\cdot \mathfrak g
+		\]
+		(augmentation ideal).
+	\end{enumerate}
+\end{thm}
+
+\subsubsection{}We now prove this theorem. Taking associated graded, we look at
+\[
+\operatorname{gr}(U\mathfrak g/I_\lambda)\xrightarrow{\ ?\ }\operatorname{gr}\bigl(\mathcal D_\lambda(G/B)\bigr).
+\]
+But one has
+\[\begin{tikzcd}
+	{\operatorname{gr}(U\mathfrak g)/\operatorname{gr}(U\mathfrak g)\operatorname{gr}(\ker\chi_\lambda)} && {\operatorname{gr}(U\mathfrak g/I_\lambda)} \\
+	{ \Gamma(G/B,\operatorname{gr}\mathcal D)     \cong     \Gamma(G/B,\operatorname{gr}\mathcal D_\lambda)} && {\operatorname{gr}\bigl(\mathcal D_\lambda(G/B)\bigr)}
+	\arrow[from=1-1, to=1-3]
+	\arrow["\phi"', from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-3, to=2-1]
+\end{tikzcd}\]
+
+We will show that the natural map $\phi$ is an isomorphism.\\
+
+Since $\ker\chi_\lambda$ is generated by $\{z-\chi_\lambda(z), z\in Z\mathfrak g\}$, its graded $\operatorname{gr}(\ker\chi_\lambda)$ inside $\operatorname{Sym}(\mathfrak g)=\mathbb C[\mathfrak g^*]$ is given by
+
+\[
+J=\{p\in \mathbb C[\mathfrak g^*]^G\mid p(0)=0\}.
+\]
+Therefore
+\[
+\operatorname{gr}(U\mathfrak g)/\operatorname{gr}(U\mathfrak g)\operatorname{gr}(\ker\chi_\lambda)
+\cong
+\mathbb C[\mathfrak g^*]/\mathbb C[\mathfrak g^*]\cdot J
+=
+\mathcal O(N).
+\] 
+Next time we will give more details on this proof.
+
+\newpage
+
+\section{Apr 9}
+
+Notes for this day provided by L\'eo Gratien.
+
+\subsection{Reminders on central characters}
+
+Assume $G$ is a connected Lie algebraic group over $\mathbb C$.
+\begin{prop}
+	\begin{enumerate}
+		\item If $G$ is connected,
+		\[
+		Z(\mathfrak g)=[U\mathfrak g]^G.
+		\]
+		\item With respect to the PBW grading,
+		\[
+		\operatorname{gr}(U\mathfrak g)=\operatorname{Sym}\mathfrak g=\mathbb C[\mathfrak g^*],
+		\qquad
+		\operatorname{gr}(Z\mathfrak g)=[\operatorname{Sym}\mathfrak g]^G=\mathbb C[\mathfrak g^*]^G.
+		\]
+		\item $U\mathfrak g$ has countable dimension over $\mathbb C$. Schur's lemma gives
+		\[
+		\chi:Z\mathfrak g\longrightarrow \mathbb C,
+		\]
+		acting by scalars $z\longmapsto \chi(z)\cdot \operatorname{Id}.$ 
+		\item $\ker\chi$ is a codimension $1$ ideal of $Z\mathfrak g$. The action factors through
+		\[
+		U_\chi=U\mathfrak g/U\mathfrak g\cdot \ker\chi.
+		\]
+	\end{enumerate}
+\end{prop}
+
+
+\begin{rmk}\begin{enumerate}
+		\item We have \[
+		\operatorname{gr}(U\mathfrak g)\supset \operatorname{gr}(Z\mathfrak g)\supset \operatorname{gr}(\ker\chi),
+		\]
+		that is,
+		\[
+		\mathbb C[\mathfrak g^*]\supset \mathbb C[\mathfrak g^*]^G\supset \mathbb C[\mathfrak g^*]^G_+.
+		\]
+		It follows from PBW, cf. last time.
+		\item  The graded $\operatorname{gr}(\ker\chi)$ is independent of $\chi$.
+		
+\end{enumerate}\end{rmk}
+
+Geometrically if $\varpi : \mathfrak g^*\longrightarrow \mathfrak g^*//G$, then $\operatorname{Spec}\bigl(\mathbb C[\mathfrak g^*]^G_+\bigr)$ is its fiber at $0$.
+\medskip
+
+\subsubsection{} The map
+\[
+\mathcal O\bigl(\varpi^{-1}(0)\bigr)=\mathcal O(N)\longrightarrow \operatorname{gr}(U_\chi)
+\]
+can (when it is an isomorphism!) be seen as a deformation of $\mathcal O\bigl(\varpi^{-1}(0)\bigr)$.
+\medskip
+
+\subsubsection{}
+But in general $\varpi$ does not behave well:
+\begin{itemize}
+	\item $\varpi^{-1}(0)$ may be bad,
+	\item $\mathcal O\bigl(\varpi^{-1}(0)\bigr)\to \operatorname{gr}(U_\chi)$ need not be an isomorphism.
+\end{itemize}
+\medskip
+
+\subsection{The reductive case} From now on, $G$ is connected reductive. Here are two main results of Kostant.
+
+\begin{thm}[Kostant]
+	\begin{enumerate}
+		\item $\mathbb C[\mathfrak g^*]$ is a free module of infinite rank over $\mathbb C[\mathfrak g^*]^G$.
+		\item $U\mathfrak g$ is a free $Z\mathfrak g$-module.
+		\item $\varpi^{-1}(0)=N$, the nilpotent cone.
+		\item  $U_\chi$ is a flat deformation of $\varpi^{-1}(0)=N$, i.e.
+		\[
+		\mathcal O(N)\xrightarrow{\sim} \operatorname{gr}(U_\chi)
+		\]
+		is an isomorphism for all $\chi$.
+	\end{enumerate}
+	
+\end{thm}
+\medskip
+
+\subsubsection{} Last time we constructed the HC homomorphism
+\[
+hc:Z\mathfrak g\longrightarrow \mathcal D(G/N)^G=U\mathfrak t\cong \mathbb C[\mathfrak t^*].
+\]
+\medskip
+\begin{thm}[Harish-Chandra]
+	\begin{enumerate}
+		\item $hc$ is injective.
+		\item
+		\[
+		\operatorname{Im}(hc)=\mathbb C[\mathfrak t^*]^W
+		\]
+		for the dot action
+		\[
+		W:\mathfrak t\longrightarrow \mathfrak t,
+		\qquad
+		\lambda\longmapsto w(\lambda-\rho)+\rho.
+		\]
+		[$\rho$ is the only fixed point of the dot action.]
+		\item One gets a description of central characters in terms of $W$-orbits on $\mathfrak t^*$, or equivalently semisimple $G$-orbits in $\mathfrak g^*$.
+	\end{enumerate}
+\end{thm}
+
+
+\subsection{Proof of BB, part 1}
+Passing to graded, it suffices to prove an isomorphism
+\[
+\operatorname{gr}(U_{\chi_\lambda})\longrightarrow \operatorname{gr}\bigl(\mathcal D_\lambda(G/B)\bigr).
+\]
+By Kostant,
+\[
+\mathcal O(N)\longrightarrow \mathcal O\bigl(T^*(G/B)\bigr)
+\]
+should be identified with the graded map.
+To prove that the graded map is an isomorphism, we identify
+\[
+\mu^*=\operatorname{gr}(\lambda):T^*(G/B)\to N.
+\]
+We assume the following lemma.
+\begin{lem}
+	\begin{enumerate}
+		\item $\mu$ is the moment map of the Springer resolution.
+		\item $\operatorname{Im}(\mu)=N$ and $\mu$ is a birational isomorphism, proper.
+		\item (Kostant) $N$ is normal.
+	\end{enumerate}
+\end{lem}
+\medskip
+
+Now one observes :
+
+\begin{itemize}
+	\item $\mu^*$ is an embedding of domains. (by 1), 3))
+	\item $\operatorname{Frac}(\mu^*)$ is an isomorphism. (by 2))
+	\item $\mu_*\mathcal O_{T^*(G/B)}$ is a coherent sheaf on $N$. (by 1))
+\end{itemize}
+Then $\Gamma\bigl(N,\mu_*\mathcal O_{T^*(G/B)}\bigr)$ is finite over $\mathcal O(N)$, and also $\Gamma\bigl(N,\mu_*\mathcal O_{T^*(G/B)}\bigr)
+=
+\Gamma\bigl(T^*(G/B),\mathcal O_{T^*(G/B)}\bigr).$
+
+Hence $\mathcal O\bigl(T^*(G/B)\bigr)$ is an integral extension of $\mathcal O(N)$. By (3), we deduce that $\mu^*$ is an isomorphism. This ends the proof of BB, part 1.
+\medskip
+
+\subsection{Beilinson-Bernstein, part 2} Before stating the second theorem of BB, some preparations.
+
+\subsection{} Let $\mu\in X^*(T)$ be an anti-dominant weight. Recall
+\[
+\mathcal D_\mu\text{-mod}
+\;
+\substack{\xrightarrow{\ \Gamma(\mathcal B,-)\ }\\[-0.4em]\xleftarrow[\ \operatorname{Loc}(-)\ ]{\ }}
+\;
+\mathcal D_\mu(G/B)\text{-mod}
+\]
+
+where
+
+\[
+\operatorname{Loc}(-)=\mathcal D_\mu\otimes_{\mathcal D_\mu(G/B)}(-).
+\]
+\begin{rmk}
+	$\mu=0$ is anti-dominant.
+\end{rmk} 
+
+\begin{thm}[Beilinson-Bernstein, part 2]
+	The functors above define an equivalence of categories
+	\[
+	U_{\chi_\mu}\text{-mod}\longrightarrow \mathcal D_\mu\text{-mod}.
+	\]
+\end{thm}
+
+\subsubsection{} We turn to the proof. The key step is the following.
+\medskip
+
+Let $V$ be a finite-dimensional irreducible representation of $\mathfrak g$, of highest weight $\lambda$, lowest weight $\lambda^*$, i.e. dominant (resp. anti-dominant). We constructed:
+\begin{align*}
+	\text{(I)}\qquad &V\otimes \mathcal O_{G/B}\twoheadrightarrow \mathcal O(\lambda^*),\\
+	\text{(II)}\qquad &\mathcal O_{G/B}=\mathcal O\hookrightarrow V\otimes \mathcal O(-\lambda).\end{align*}
+
+\medskip
+
+For every $\mathcal O$-module $M$, applying these gives
+\begin{align*}
+	&V\otimes M\longrightarrow \mathcal O(\lambda^*)\otimes M=:M(\lambda^*),\\
+	&M\longrightarrow V\otimes M(-\lambda).
+\end{align*}
+
+\begin{lem}[Lemme clef]
+	Let $\mu\in X^*(T)$ be anti-dominant. If $M$ is a $\mathcal D_\lambda$-module, then (I) and (II) split as $\mathbb C$-vector spaces (without any extra structure).
+\end{lem}
+
+\newpage
+
+\section{Apr 14}
+
+\subsection{Splitting lemma}
+
+We only prove one of the two splittings, the second is similar. \\
+
+Consider the case $\mu = 0$ so $\mc D_\mu = \mc D_{\mc B}$. Fix a finite dimensional irreducible representation $V$ of $G$, as well as a Borel and a maximal torus. Let $\lambda$ be the highest weight, let $\lambda^*$ be the lowest weight, and let $\lambda=\lambda_1,\dots,\lambda_n=\lambda^*$ be all the weights.\\
+
+Now pick a $B$-stable flag $0=F_0\subset\cdots\subset F_n=V$ so that each subquotient $F_i/F_{i-1}$ is a 1-dimensional representation of $T$ with weight $\lambda_i$. This gives a flag $\mc F_\bullet$ of locally free $\mc O_{\mc B}$-modules, where the fiber of $\mc F_i$ at $B\in\mc B$ is $F_i$. Each subquotient $\mc F_i/\mc F_{i-1}$ is $\mc O(\lambda_i)$. We also have $\mc F_n = V\otimes_\C \mc O_{\mc B}$. \\
+
+Given an $\mc O_{\mc B}$-module $\mc M$ we may consider the corresponding twisted flag $\mc F_i(\mc M)=\mc F_i\otimes_{\mc O_{\mc B}}\mc M$. The subquotients are $\mc M(\lambda_i)=\mc O(\lambda_i)\otimes_{\mc O_{\mc B}}\mc M$. We also have $\mc F_n(\mc M)=V\otimes_\C\mc M$. There is a projection map $\pr:\mc F_n(\mc M)\to \mc F_n(\mc M)/\mc F_{n-1}(\mc M)=\mc M(\lambda^*)$. 
+
+\begin{lem}[Splitting Lemma]\label{lem:split}
+	If $\mc M$ is a $\mc D_{\mc B}$-module, then $\pr$ splits.
+\end{lem}
+
+\begin{proof}
+	We have a map $\mc U\mf g\to \mc D(\mc B)$, which allows $\mc U\mf g$ to act on $\mc M$. Any $z$ in the center $Z\mf g$ of $\mc U\mf g$ acts by $\chi_0(z)\id=\hc(z)(0)\id$, where $\hc$ is the Harish-Chandra isomorphism. There is also a twisted version of this, where for any character $\nu$, we have $\mc M(\nu)$ is a $\mc D_{\mc B,\mc O(\nu)}$-module, and $z\in Z\mf g$ acts on it by $\chi_\nu(z)\id = \hc(z)(\nu)\id$. \\
+	
+	To prove the splitting, it suffices to construct $z\in Z\mf g$ such that $\chi_{\lambda_i}(z)\ne \chi_{\lambda_n}(z)$ for all $i\ne n$; this will produce a polynomial $p\in\C[t]$ such that $p(z)(\mc F_{n-1}(\mc M))=0$ and $p(z)$ acts on the quotient $\mc M(\lambda^*)$ by $\id$. \\
+	
+	Recall that the HC isomorphism is a map $\hc:Z\mf g\xr\sim (\mc U\mf t)^{\dot W}=\mc O(\mf t^*/\dot W)$, where $\chi_{\lambda_i}$ corresponds to evaluation at $\dot W\lambda_i$. ($\dot W$ is twisted dot action defined previously.) Elements of $\mc O(\mf t^*/\dot W)$ separate points of $\mf t^*/\dot W$, so we are reduced to proving the following: \begin{itemize}
+	\item If $i\ne n$, then $\lambda^*-\rho \notin W(\lambda_i-\rho)$. 
+	\end{itemize} Assume for contradiction that there is some $w\in W$ and $i\ne n$ such that $\lambda^*-\rho = w(\lambda_i-\rho)$. Then \begin{gather}\label{eq:splitstar}
+	(\rho-w(\rho))+(w(\lambda_i)-\lambda^*)=0
+	\end{gather} Note that $\rho$ and $-\lambda^*$ are dominant. Recall the partial order on $X^*(T)$: \nts{add}. We have $w(\rho)\le \rho$ with equality if and only if $w = 1$. We also have $\lambda^*\le w(\lambda_i)$, since $\lambda^*$ is the lowest weight. The equation \ref{eq:splitstar} then forces $\rho = w(\rho)$ and $w(\lambda_i)=\lambda^*$, whence $w=1$ and $\lambda_i=\lambda^*$, which contradicts $\lambda^*$ being the lowest weight.
+\end{proof}
+
+From 2 BB we get equivalences of categories \begin{gather*}
+	\Rmod{\mc U_0} \cong \Rmod{\mc D(\mc B)} \cong \Rmod{\mc D_{\mc B}}\cong \Rmod{\mc D_\nu} \cong \Rmod{\mc D_\nu(\mc B)}\cong \Rmod{\mc U_\nu(\mc B)}
+\end{gather*} for any antidominant $\nu$. Recall the notation $\mc U_0$ (resp. $\mc U_\nu$) means $\mc U\mf g/(\chi_0)$ (resp. $\mc U\mf g/(\chi_\nu)$).
+
+\begin{cor}
+	For all antidominant $\nu$, there is an equivalence (called \textbf{translation}) \begin{gather*}
+		\Rmod{\mc U_0}\cong \Rmod{\mc U_\nu}.
+	\end{gather*} In other words, $\mc U_\nu$ is Morita equivalent to $\mc U_0$. 
+\end{cor}
+
+The construction of \nts{something} uses $\mc D(G/N)^G$. We consider $\mc D(G/N)^T$. We have % https://q.uiver.app/#q=WzAsNCxbMSwwLCJaXFxtZiBnIl0sWzAsMCwiXFxtYyBVXFxtZiBnIl0sWzIsMCwiKFxcbWMgVVxcbWYgdClee1xcZG90IFd9Il0sWzMsMCwiXFxtYyBVXFxtZiB0Il0sWzAsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbMCwyLCJcXGhjIl0sWzIsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}
+	{\mc U\mf g} & {Z\mf g} & {(\mc U\mf t)^{\dot W}} & {\mc U\mf t}
+	\arrow[hook', from=1-2, to=1-1]
+	\arrow["\hc", from=1-2, to=1-3]
+	\arrow[hook, from=1-3, to=1-4]
+\end{tikzcd}\] so we get an algebra map $\mc U\mf g\otimes_{Z\mf g}\mc U\mf t\to \mc D(G/N)^T$. The LHS can also be described as the quotient of $\mc U\mf g\otimes \mc U\mf t$ by the relations $z\otimes 1 = 1\otimes \hc(z)$ for $z\in Z\mf g$. 
+
+\begin{claim}
+	The map $\mc U\mf g\otimes_{Z\mf g}\mc U\mf t\to \mc D(G/N)^T$ is an isomorphism.
+\end{claim} 
+
+\begin{proof}[Proof sketch]
+	Taking associated graded with respect to the PBW filtration on both sides, we are reduced to proving that $\Sym\mf g\otimes_{(\Sym \mf g)^G}\Sym \mf t\xr\Psi \mc O(T^*(G/N))^T$ is an isomorphism. The LHS can also be expressed as $\C[\mf g^*\times_{\mf g^*//G}\mf t^*]$, so our morphism $\Psi$ has a geometric incarnation as a map $T^*(G/N)//T \to \mf g^*\times_{\mf g^*//G}\mf t^*$. \\
+	
+	Recall that $T^*(G/N)=G\times^N \mf n^\bot$. If we use a Killing form to identify $\mf g^*\cong \mf g$, then $\mf n^\bot\cong \mf b$. Now, $T$ acts on this space by right translations, and the quotient is the Grothendieck-Springer resolution $\wt{\mf g}$, which is the space of pairs $(x,\mf b')\in\mf g\times \mc B$ such that $x\in\mf b'$. The map $\Psi$ is induced by the map $\mu\times\nu:\wt{\mf g}\to \mf g\times_{\mf g//G}\mf t$, where $\mu(x,\mf b')=x$ and $\nu(x,\mf b')=x\mod \mf n'\in \mf b'/\mf n'\cong \mf t$. We have the following diagram % https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXHd0e1xcbWYgZ30iXSxbMCwxLCJcXG1mIGciXSxbMiwxLCJcXG1mIHQiXSxbMSwyLCJcXG1mIGcvL0dcXGNvbmdcXG1mIHQvL1ciXSxbMCwxLCJcXG11IiwyXSxbMSwzXSxbMCwyLCJcXG51Il0sWzIsM11d
+	\[\begin{tikzcd}
+		& {\wt{\mf g}} & \\
+		{\mf g} && {\mf t} \\
+		& {\mf g//G\cong\mf t//W}
+		\arrow["\mu"', from=1-2, to=2-1]
+		\arrow["\nu", from=1-2, to=2-3]
+		\arrow[from=2-1, to=3-2]
+		\arrow[from=2-3, to=3-2]
+	\end{tikzcd}\] and we want to prove that $(\mu\times \nu)^*$ is an isomorphism. We have the following facts: \begin{itemize}
+		\item $\mu \times \nu$ is birational and proper.
+		\item $\mf g\times_{\mf g//G}\mf t$ is a complete intersection in $\mf g\times\mf t$. Indeed, $\mf g//G\cong \mf t//W$ is an affine space with $\dim(\mf g//G)=\dim(\mf t)$, so that many equations are needed to define the fiber product. Furthermore, $\dim(\mf g\times_{\mf t//W}\mf t)=\dim(\mf g)=\dim(\mf g\times\mf t)-\dim(\mf t)$, so the codimension of $\mf g\times_{\mf g//G}\mf t$ in $\mf g\times\mf t$ equals the number of equations needed to define it.  
+	\end{itemize} Now we need $\mf g\times_{\mf g//G}\mf t$ to be normal. It suffices to show that $\mf g\times_{\mf g//G}\mf t$ is reduced and smooth in codimension 1 \nts{(should it be 2?)}. Since $\mf g\times_{\mf g//G}\mf t$ is a complete intersection, to show it is reduced, it suffices to show it generically. We omit the remaining geometric steps.
+\end{proof}
+
+\subsection{BB theorem for projective space}
+
+Let $V=\C^n$, $\bb P = \bb P(V) = \bb P^{n-1}$. The group $GL_n$ acts on $V$, and its subgroup $SL_n$ acts on $\bb P$. Then elements of $\gln n$ give vector fields on $V$, and elements of $\sln n$ give vector fields on $\bb P$. Let $x_i$ be coordinates on $V$, let $\partial_i=\ppxi i$, let $e_{ij}\in\mf g$ be elementary matrices. The matrix $e_{ij}$ is sent to the vector field $x_i\partial_j$ \nts{(or $x_j\partial_i$, depending on your convention)} on $V$. One can show that the element \begin{gather*}
+	e_{ij}e_{k\ell}-e_{i\ell}e_{kj}-\delta_{jk}e_{i\ell}+\delta_{k\ell}e_{ij}\in \mc U\gln n
+\end{gather*} is mapped to 0 in $\mc D(V)$. \nts{(I verified it on paper.)} Let $\mc I$ be the two-sided ideal generated by all elements of the above form, together with the identity matrix $\id$. 
+
+\begin{thm}
+	The map $\mc U\gln n/\mc I\to\mc D(\bb P)$ is an algebra isomorphism.
+\end{thm}
+
+\begin{proof}
+	Taking associated graded, we are reduced to showing that there is an isomorphism $\Sym\gln n/I\to\mc O(T^*\bb P)$, where $I$ is the ideal generated by the quadratic terms $e_{ij}e_{k\ell}-e_{i\ell}e_{kj}$, together with $\id$. \nts{missing some stuff}
+\end{proof}
+
+\newpage
+
+\section{Apr 16}
+
+\subsection{Basic constructions with D-modules}
+
+Let $V=\C^n$ with coordinates $x_i$. Let $\partial_i = \ppxi i$. Any $v\in V$ gives a directional derivative operator $\partial_v$. Multiplication in $\mc D(V)$ induces an isomorphism $\C[V]\otimes\Sym V\to \mc D(V)$ of $\C[V]$-modules; explicitly the map sends a spanning element $f\otimes v_1\cdots v_k$ to $m_f\p_{v_1}\cdots\p_{v_k}$. There is a similar isomorphism \begin{gather}\label{eq:distrstar}
+	\Sym V\otimes \C[V]\to \mc D(V)
+\end{gather} given by swapping the order of $\Sym V$ and $\C[V]$. Thus, for any differential operator \begin{gather*}
+	u = \sum_{i_1+\cdots+i_n\le k} m_{f_{i_1,\dots,i_n}}\p^{i_1}1\cdots \p^{i_n}_n,
+\end{gather*} there are unique functions $g_{i_1,\dots,i_n}$ such that \begin{gather*}
+u = \sum_{i_1+\cdots+i_n\le k} \p^{i_1}1\cdots \p^{i_n}_nm_{g_{i_1,\dots,i_n}}.
+\end{gather*} Now, let $I_0=\C[V]_+$ be the augmentation ideal of those polynomials vanishing at 0. Let $\Delta_0=\mc D(V)/\mc D(V)I_0$, called/thought of as ``distributions at 0". The isomorphism \ref{eq:distrstar} induces an isomorphism $\Delta_0 \cong \Sym V\otimes (\C[V]/I_0)=\Sym V$. Explicitly, $v_1\cdots v_k\in\Sym V$ is sent to $\p_{v_1}\cdots\p_{v_k}\delta_0$, where $\delta_0$ is 1 mod $\mc D(V)I_0$, thought of as the Dirac delta distribution. \\
+
+Given a smooth algebraic variety $X$ and a point $a\in X$, let $\mc I_a$ be the ideal sheaf of $a$. Then we define the $\mc D_X$-module $\Delta_a=\mc D_X/\mc D_X\mc I_a$. There is an induced filtration on $\Delta_a$ given by $F_i\Delta_a=\mc D_{X,i}\delta_a$, where $\delta_a$ is 1 mod $\mc D_X\mc I_a$. 
+
+\begin{prop}
+	\begin{enumerate}
+		\item $\Delta_a$ is a simple $\mc D_X$-module.
+		\item There is a canonical isomorphism \begin{gather*}
+			\gr\Delta_a\cong \Sym(T_aX)=\C[T_a^*X].
+		\end{gather*}
+		\item $F_k\Delta_a$ consists of those $m\in\Delta_a$ with $I_a^{k+1}m=0$. 
+		\item $\Supp(\Delta_a)=\{a\}$, and moreover, any $\mc D_X$-module supported on $\{a\}$ is a direct sum of copies of $\Delta_a$. Note that $\Supp$ means support as an $\mc O_X$-module. 
+	\end{enumerate}
+\end{prop} 
+
+\begin{proof}[Proof sketch]
+	We only sketch the proof when $X=V=\C^n$ and $a=0$, because later on we will prove something more general. There are two parts of the proof. \\
+	
+	\textbf{Part I: } We have $F_k\Delta_0\cong (\bigoplus_{i\le k}\Sym^i V)\delta_0$. We have maps % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXFN5bV5rViJdLFsxLDAsIlxcU3ltXntrKzF9ViJdLFswLDEsIlxccF9pIiwwLHsib2Zmc2V0IjotMX1dLFsxLDAsInhfaSIsMCx7Im9mZnNldCI6LTF9XV0=
+	\[\begin{tikzcd}
+		{\Sym^kV} & {\Sym^{k+1}V}
+		\arrow["{\p_i}", shift left, from=1-1, to=1-2]
+		\arrow["{x_i}", shift left, from=1-2, to=1-1]
+	\end{tikzcd}\] We compute $x_i\p_i\delta_0 = (\p_ix_i-1)\delta_0=-\delta_0$ and $\Eu(\delta_0)=-n\delta_0$, where $\Eu = \sum x_i\p_i$ is the Euler vector field. Now there is an algebra isomorphism $\mc D(\C^n)\cong \mc D(\C)^{\otimes n}$ and under this we have $\Delta_0(\C^n)\cong (\Delta_0(\C))^{\otimes n}$. We reduce to the case $n=1$; we write $x$ for $x_1$ and $\p$ for $\p_1$. Then $\Delta_0=\C[\p]\delta_0$. The previous diagram of maps becomes \[\begin{tikzcd}
+	{\C\p^k\delta_0} & {\C\p^{k+1}\delta_0}
+	\arrow["{\p}", shift left, from=1-1, to=1-2]
+	\arrow["{x}", shift left, from=1-2, to=1-1]
+	\end{tikzcd}\]
+	
+	\begin{claim}
+		$x\p^{k+1}\delta_0=c\p^k\delta_0$ for a nonzero constant $c$. 
+	\end{claim}
+	
+	Then for any nonzero $m\in\Delta_0$, there is some $k\ge 0$ and nonzero constant $c$ such that $x^km=c\delta_0$ and $x^{k+1}m=0$. It follows that for any two nonzero $m,m'\in\Delta_0$, there is some polynomial $p$ and $k\ge 0$ such that $m'=p(\delta)x^km$, which shows that $\Delta_0$ is simple. It is also clear that for any $m\in \Delta_0$, there is some $k$ large enough so that $I^k_0m=0$, which shows $\Supp(\Delta_0)=0$. \\
+	
+	\textbf{Part II: } For an arbitrary smooth $X$, we can first of course reduce to affines. Furthermore, using \'etale coordinates (explained below), we can reduce from the case of an affine to (essentially) the case of a vector space.
+\end{proof}
+
+\subsection{\'Etale coordinates}
+
+Let $X$ be smooth affine. By Noether normalization, shrinking $X$ if necessary, one can construct an \'etale map $F:X\to \C^n$; in particular (which is all we care about from the \'etale condition) $d_xF:T_xX\xr\sim T_{F(x)}\C^n$ for all $x\in X$. Let $\p_i = (dF)^*(\ppxi i)$. Then the $\p_i$ form a basis of $TX$ with the property that $[\p_i,\p_j]=0$ for all $i,j$. Thus any differential operator on $X$ can be expressed in the form \begin{gather*}
+	\sum_{i_1+\cdots+i_n\le k} f_{i_1,\dots,i_n}(x)\p_1^{i_1}\cdots\p_n^{i_n}
+\end{gather*} for some $f_\bullet \in \mc O(X)$. Then one can work with differential operators in essentially the same way as with a vector space. 
+
+\subsection{Twisted version}
+
+Let $\mc L$ be a line bundle, and recall the TDO sheaf $\mc D_{X,\mc L}=\mc L\otimes \mc D_X\otimes \mc L^{-1}$, with all tensor products over $\mc O_X$. Given $a\in X$ with ideal sheaf $\mc I_a$. We can define $\Delta_{a,\mc L}=\mc D_{X,\mc L}/\mc D_{X,\mc L}\mc I_a$. \\
+
+\textbf{Exercise: } Let $X=\mc B=G/B$. Let $e=B$. For a character $\lambda$, we have a map $\mc U\mf g\to \Gamma(\mc B,\mc D_{\mc B,\mc O(\lambda)})$, so that $\Delta_{e,\mc O(\lambda)}$ can be viewed as a $\mc U\mf g$-module. Show that it is a Verma module and find the highest weight.
+
+\subsection{Another construction}
+
+\begin{prop}
+	Let $\mc M$ be a $\mc D_X$-module. If $\mc M$ is coherent as an $\mc O_X$-module, then $\mc M$ is locally free as an $\mc O_X$-module.
+\end{prop}
+
+\begin{proof}
+	``To show something is locally free, it suffices to show that locally it is free" - Victor Ginzburg. \\
+	
+	Fix $x\in X$ and let $\mc O_x$ be the local ring at $x$ with maximal ideal $\mf m_x$. Let $D = \mc O_x\otimes_{\mc O_X}\mc D_X$ and let $M=\mc O_x\otimes_{\mc O_X}\mc M$. Since $\mc M$ is coherent, $M$ is finitely generated as an $\mc O_x$-module. Let $\ol M= M/\mf m_xM$; it is a finite dimensional vector space over the residue field $\kappa(x)=\mc O_x/\mf m_x$. Let $\ol m_i$ be a $\C$-basis for $\ol M$, and pick lifts $m_i\in M$. There is a map $p:\mc O_x^n\to M$ given by $(f_i)\mapsto \sum f_im_i$. Nakayama's lemma implies $p$ is surjective. The proof is done once we show the following:
+	
+	\begin{claim}
+		$p$ is injective.
+	\end{claim}
+	\begin{proof}[Proof of Claim]
+		Assume $p$ is not injective. Define the order of a tuple $(f_i)$ to be the maximum $k\ge0$ such that each $f_i$ is in $\mf m_x^k$. Let $\nu$ be the minimum order of all tuples in $\ker p$, and take $(f_i)\in\ker p$ with order $\nu$. Choose \'etale coordinates around $x\in X$ so that we have operators $\p_i$. 
+		
+		\begin{claim}
+			There is some $\p_i = \p$ such that $\p f_1 \in \mf m_x^{\nu-1}$ but not in $\mf m_x^\nu$.
+		\end{claim} 
+		
+		We do not prove this claim. Assuming it, we have \begin{gather*}
+			0 = \p\bigp{ \sum f_im_i } = \sum(\p f_i)m_i + \sum f_i(\p m_i).
+		\end{gather*} By surjectivity of $p$, there are $a_{ij}\in \mc O_x$ such that $\p m_i = \sum a_{ij}m_j$. Thus \begin{gather*}
+		0 = \sum(\p f_i)m_i + \sum f_ia_{ij}m_j.
+		\end{gather*} The coefficient of $m_1$ is $\p f_1+\sum f_ia_{i1}$, which is in $\mf m_x^{\nu-1}$ but not in $\mf m_x^\nu$. Thus we have produced a relation with order less than $\nu-1$, a contradiction.
+	\end{proof}
+\end{proof}
+
+\nts{stuff at the end I don't quite understand}
 
 \end{document}
