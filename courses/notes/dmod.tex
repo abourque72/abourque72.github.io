@@ -107,6 +107,7 @@
 \newcommand{\gln}[1]{\mathfrak{gl}_{#1}}
 \newcommand{\p}{\partial}
 \newcommand{\Eu}{\mathrm{Eu}}
+\newcommand{\coker}{\mathrm{coker}}
 
 \newcommand{\confusion}[0]{\textcolor{red}{(???)}}
 \newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
@@ -1160,5 +1161,109 @@ Let $\mc L$ be a line bundle, and recall the TDO sheaf $\mc D_{X,\mc L}=\mc L\ot
 \end{proof}
 
 \nts{stuff at the end I don't quite understand}
+
+\newpage
+
+\section{Apr 21}
+
+\subsection{Review of connections}
+
+Let $X$ be smooth, or holomorphic, or an algebraic variety. Let $\mc O = \mc O_X$ and $\Omega^i$ the sheaf of $i$-forms on $X$. For an $\mc O$-module $\mc M$, we can form $\mc M\otimes_{\mc O}\Omega^i$ to get $\mc M$-valued forms. We note $\mc Hom_{\mc O}(T_X,\mc M)\cong \mc M\otimes \Omega^1$. 
+
+\begin{defn}
+	A \textbf{connection} on $\mc M$ is a map $\nabla:\mc M\to\mc M\otimes_{\mc O}\Omega^1$ such that $\nabla(fm)=m\otimes df + f\nabla m$. 
+\end{defn}
+
+\begin{exam}
+	If $\mc M=\mc O$, we can take $\nabla = d$. 
+\end{exam}
+
+Identifying $\mc Hom_{\mc O}(T_X,\mc M)\cong \mc M\otimes \Omega^1$, we can interpret $\nabla m$ as an element of $\mc Hom_{\mc O}(T_X,\mc M)$, denoted $\xi\mapsto \nabla_\xi m$. 
+
+\begin{exam}
+	Let $V$ be a vector space, $\mc M = \mc O\otimes_{\mc C}V$. Then $\nabla(f\otimes v)=(df)\otimes v + f\nabla(1\otimes v)$, so the connection is determined by a map $A$ \nts{fill in} (\textbf{connection 1-form})
+\end{exam}
+
+One can extend $\nabla$ \nts{fill in} in general $\nabla^2\ne 0$.
+
+\begin{claim}
+	$\nabla^2\in (\End_{\mc O}\mc M)\otimes_{\mc O}\Omega^2$. This is called the \textbf{curvature} of $\nabla$. If $\nabla^2=0$, we say the connection is \textbf{flat}.
+\end{claim}
+
+\begin{exam}
+	Let $\mc M=\mc O\otimes_{\mc C}V$, $X=\C^n$ with coordinates $x_i$. The connection 1-form can be expressed as $A=\sum A_idx_i$, with $A_i:X\to \End V$. Then \begin{gather*}
+		\nabla^2 = \sum_{i<j} \bigp{\ppxi j A_i - \ppxi i A_j + [A_i,A_j]}dx_idx_j.
+	\end{gather*}
+\end{exam}
+
+\begin{rmk}
+	If $\dim V = 1$, then $\End V = \C$, so the connection 1-form $A$ is a genuine 1-form, and $\nabla^2=dA$. 
+\end{rmk}
+
+\begin{claim}
+	The map $\xi\mapsto (m\mapsto \nabla_\xi m)$ extends to a $\mc D_X$-module structure on $\mc M$ iff $\nabla^2=0$. 
+\end{claim}
+
+\begin{exam}
+	Let $\mc M=\mc O$. Fix $f\in \mc O$, and let $\nabla = d+A = d+df$. Then $\nabla_\xi(1)=\pair{df}\xi\cdot 1=\xi(f)\cdot1$. Then the corresponding $\mc D$-module structure on $\mc M$ is exactly what we previously defined as $\mc D f$. 
+\end{exam}
+
+\begin{exam}
+	Let $X=\C^\times$ with coordinate $z$, $\mc M = \mc O$. We have an invariant 1-form $z^{-1}dz$ and invariant vector field $\xi=z\dd z$. Fix $\lambda\in\C$ and let $\nabla = d+\lambda z^{-1}dz$. Then $\nabla_\xi(1)=\lambda\pair{z^{-1}dz}{\xi}\cdot 1 = \lambda\cdot 1$. Note that $\xi(z^\lambda)=\lambda z^\lambda$. The resulting $\mc D$-module is denoted $\mc Dz^\lambda$. 
+\end{exam}
+
+\subsection{Pullback of D-modules}
+
+Given $F:X\to Y$ a morphism of varieties, we claim that there is a pullback functor $F^*:\mc \Rmod{\mc D_Y}\to \Rmod{\mc D_X}$. At the level of $\mc O$-modules, it is exactly the $\mc O$-module pullback, i.e. $F^*\mc M = \mc O_X\otimes_{F^{-1}\mc O_Y}F^{-1}\mc M$, where $F^{-1}$ denotes the naive sheaf pullback. However, it is not obvious why this has a $\mc D_X$-module structure, which we now explain in multiple ways. \\
+
+The module $\mc M$ induces a flat connection $\nabla:\mc M\to \mc M\otimes_{\mc O_Y}\Omega^1_Y$. Pulling back the connection and composing with $F^*\Omega^1_Y\to \Omega^1_X$ gives a connection $F^*\nabla:F^*\mc M\to F^*\mc M\otimes_{\mc O_X}F^* \Omega^1_Y\to F^*\mc M\otimes_{\mc O_X}\Omega^1_X$. This connection is flat and thus gives a $\mc D_X$-module structure on $\mc M$. \\
+
+We can also explain the D-module structure in terms of the action of vector fields. The map $F$ induces $dF:T_X\to F^*T_Y$. Writing sections of $F^*\mc M$ as $f\otimes F^{-1}m$ (via the defining expression of $F^*\mc M$), we write the action of $\xi\in T_X$ as \begin{gather*}
+	\xi(f\otimes F^{-1}m)=\xi(f)\otimes F^{-1}m + f\otimes dF(\xi)m.
+\end{gather*}
+
+\begin{exam}
+	\nts{coordinate example}
+\end{exam}
+
+\begin{exam}[Pullback along projection]
+	Let $F:X=Y\times Z\to Y$ be the projection. Then $F^*\mc M = \mc M\boxtimes \mc O_Z$. We note $\mc D_X=\mc D_Y\boxtimes \mc D_Z$, which naturally acts on $\mc M\boxtimes \mc O_Z$. 
+\end{exam}
+
+\subsection{Pushforward of D-modules along an open embedding}
+
+Let $F:X\into Y$ be an open embedding. Then $F_*$ for D-modules is the same as $F_*$ for $\mc O$-modules, which is the same as $F_*$ (naive pushforward) for sheaves of vector spaces. Let $\mc M$ be a sheaf on $X$, and let $U\subset Y$ be open. Then $F_*\mc M(U)=\mc M(U\cap X)$. The $\mc D_Y(U)$-module structure on $F_*\mc M(U)$ is then given by restricting to $\mc D_Y(U\cap X)=\mc D_X(U\cap X)$. We note that (in this case) $F_*$ is left exact, but not exact in general.
+
+\subsection{Beilinson-Bernstein theorem for projective space}
+
+Let $\bb P = \bb P(\C^n) = \bb P^{n-1}$.
+
+\begin{thm}
+	We have mutually inverse equivalences $\Gamma=\Loc^{-1}:\Rmod{\mc D_{\bb P}}\to \Rmod{\mc D(\bb P)}$.
+\end{thm}
+
+\begin{proof}
+	It suffices to prove: \begin{itemize}
+		\item $\Gamma$ is exact.
+		\item If $\mc M$ is a nonzero $\mc D_{\bb P}$-module, then $\Gamma(\mc M)\ne 0$.
+	\end{itemize}
+	
+	First we prove statement 2. \\
+	
+	Consider $p:\C^n\setminus 0\to \bb P$; it is a principal $\C^\times$-bundle. Let $\mc M$ be a nonzero $\mc D_{\bb P}$-module. There is a decomposition $\Gamma(p^*\mc M)=\bigoplus_{i\in\Z}\Gamma(p^*\mc M)^{(i)}$ into weight spaces for the $\C^\times$-action. Each weight space can be reinterpreted as $\Gamma(\bb P, \mc M(i))$. In particular, $\Gamma(\mc M)=\Gamma(p^{-1}\mc M)=\Gamma(p^*\mc M)^{(0)}$. The following claim is then clearly stronger than what we want to prove:
+	
+	\begin{claim}
+		If $\mc M$ is a nonzero $\mc D_{\bb P}$-module, then $\Gamma(p^*\mc M)^{(i)}\ne 0$ for all $i\ge 0$. 
+	\end{claim}
+	\begin{proof}[Proof of Claim]
+		We proceed by descending induction on $i$. For $i$ very large, $\mc O(i)$ is very ample, so $\Gamma(p^*\mc M)^{(i)}=\Gamma(\bb P, \mc M(i))\ne 0$. \\
+		
+		We now show that, assuming $\Gamma(p^*\mc M)^{(i)}\ne 0$ and $i>0$, we have $\Gamma(p^*\mc M)^{(i-1)}\ne 0$. The Euler vector field $\Eu = \sum x_j\ppxi j$ on $\C^n\setminus 0$ is the (image of a) generator for the $\Lie(\C^\times)$-action. Furthermore, $\Eu$ acts on $\Gamma(p^*\mc M)^{(i)}$ by $i\cdot \id$. Write $\p_k$ for $\ppxi k$. We compute $[\Eu,\p_k]=-1\cdot \p_k$. This implies $\p_k$ maps the weight $i$ space to the $i-1$ space. Let $\wt m \ne 0$ be in the weight $i$ space. Suppose that $\p_k \wt m=0$ for all $k$. Then $\Eu \wt m = 0$, a contradiction. Thus there is some $k$ such that $\p_k\wt m\ne 0$, which gives a nonzero element in the weight $i-1$ space.  
+	\end{proof}
+	
+	Now we prove statement 1, i.e. $\Gamma$ is exact. \\
+	
+	Let $0\to \mc M_1\to 0$ be a SES \nts{fix} of $\mc D_{\bb P}$-modules. Let $p:\C^n\setminus 0\to \bb P$, and let $j:\C^n\setminus 0\into \C^n$. Since $p$ is smooth, the functor $p^*$ is exact, so we get \nts{fill in}. Since $\C^n$ is affine, taking global sections on it is exact. Furthermore, taking weight spaces is exact, so we obtain: \nts{fill in} which is the same as \nts{fill in}. Now, $\coker(\alpha)$ is supported at 0, so it is a direct sum of copies of $\Delta_0$. We know $\Eu$ acts on $\Delta_0$ with weights $-n, -n-1,-n-2,\dots$, so there is no weight 0 space.
+\end{proof} 
 
 \end{document}
