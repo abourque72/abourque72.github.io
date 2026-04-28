@@ -1468,4 +1468,82 @@ We can always give a good filtration on a finitely generated $A$-module by setti
 	Assume $\gr A$ is Noetherian. Then the assignment $M\mapsto \gr M$, with respect to a good filtration on $M$, induces a semigroup homomorphism $K^+(A)\to K^+(\gr A)$. 
 \end{thm}
 
+\newpage
+
+\section{Apr 28}
+
+\subsection{Reminder on commutative algebra}
+
+Let $B=\bigoplus_{i\ge 0}B_i$ be a graded and commutative ring, further assumed to be an integral domain which is finitely generated over a field $k$ of characteristic 0 (in particular, $k\subset B_0$). \\
+
+As a result, $B_0$ is finitely generated over $k$, and $B$ is generated as a $B_0$-algebra by finitely many homogeneous elements from $B_{>0}$. Setting $X=\Spec B$ and $X_0=\Spec B_0$, we have these are irreducible varieties over $k$. The maps $B_0\into B$ and $B\onto B/B_{>0}=B_0$ induce maps $p:X\to X_0$ and $i:X_0\into X$. We identify $X_0$ with its image in $X$. We have $p\circ i = \id$. \\
+
+The grading on $B$ induces a $\bb G_m$-action on $X$, such that $X_0$ is the fixed point locus. \\
+
+Let $M=\bigoplus_{i\in\Z} M_i$ be a finitely generated $B$-module. Since $M$ is finitely generated, the grading on $M$ is bounded below. Each $M_i$ is a finitely generated $B_0$-module. The grading on $M$ induces a $\bb G_m$-action on the associated coherent sheaf $\wt M$ on $X$. The support of $M$ is a closed $\bb G_m$-stable subset of $X$. Let $d(m)=\dim\Supp M$. \\
+
+For each irreducible component $S$ of $\Supp M$ with $\dim S = d(M)$, we define the multiplicity $(M:S)\in\Z_{>0}$ as follows. $S$ corresponds to a prime ideal $\mf p$ of $B$. If $d(M)=\dim(X)$, then $B_{\mf p}$ is a field, in particular the fraction field of $B$, and $M_{\mf p}$ is a finite dimensional vector space over $B_{\mf p}$. In this case we say $(M:S)=\dim_{B_{\mf p}} M_{\mf p}$. In general, we find that $M_{\mf p}$ is killed by some power of $\mf p B_{\mf p}$, so it is finite length, and we let $(M:S)$ be the length.
+
+\subsection{Hilbert polynomial}
+
+Assume now that $B_0=k$. Then each $B_i$ and $M_i$ is finite dimensional over $k$. \\
+
+Fact: There is a unique polynomial $p(M,t)\in\Q[t]$ of the form \begin{gather*}
+	p(M,t)=c(M)\frac{t^{d(M)}}{d(M)!}+\text{ lower powers of } t
+\end{gather*} such that: \begin{enumerate}
+	\item For $n$ large enough, \begin{gather*}
+		p(M,n)=\sum_{i\le n}\dim M_i.
+	\end{gather*}
+	\item For $\mc C$ be the set of irreducible components $S$ of $\Supp M$ with $\dim S = d(M)$. Then \begin{gather*}
+		c(M)=\sum_{S\in\mc C}(M:S).
+	\end{gather*}
+	\item If $0\to M'\to M\to M''\to 0$ is a short exact sequence of graded $B$-modules, then $p(M,t)=p(M',t)+p(M'',t)$. 
+\end{enumerate} 
+
+\subsection{Filtered to graded}
+
+Let $A$ be a not necessarily commutative algebra with filtration $0=A_{-1}\subset A_0\subset\cdots $ with $1\in A_0$ such that $B=\gr A$ is a commutative finitely generated domain. Let $M$ be an $A$-module of the form $M=AM_0$, where $M_0$ is a finitely generated $A_0$-module. Then the $M_i=A_iM_0$ give a good filtration on $M$. From last time, we have a homomorphism of semigroups $K^+(A)\to K^+(B)$. 
+
+\begin{defn}
+	The \textbf{associated variety}, or \textbf{singular support}, of $M$ is $SS(M)=\Supp(\gr M)\subset \Spec(B)$. 
+\end{defn}
+
+\begin{rmk}
+	It is important that we have a good filtration on $M$. In particular, $SS(M)$ is independent of the (good) filtration on $M$ because of the map $K^+(A)\to K^+(B)$. 
+\end{rmk}
+
+We let $d(m)=\dim SS(M)$, which is what we previously called $d(\gr M)$. For any irreducible component $S$ of $SS(M)$ of dimension $d(M)$, we define $(M:S)=(\gr M:S)$. \\
+
+Now let $0\to M'\to M\to M''\to 0$ be a short exact sequence of $A$-modules, such that $M$ has a good filtration. We said last time that $M'$ and $M''$ inherit good filtrations from $M$ in a natural way, and we get a short exact sequence of the associated graded modules. In particular, we get $(M:S)=(M':S)+(M'':S)$, where on the right hand side, if $\dim(S)>d(M')$, we say $(M':S)=0$, and similarly for $M''$. 
+
+\subsection{The case of D-modules}
+
+Let $Y$ be smooth affine. Let $A=\mc D(Y)$ equipped with order filtration. Then $B=\gr A = k[T^*Y]$, so $X=\Spec B=T^*Y$. We note that $X_0=\Spec B_0=Y$ is the 0 section. Then any finitely generated $\mc D(Y)$-module $M$, we have $SS(M)\subset T^*Y$. $\bb G_m$ acts on $T^*Y$ by dilation along the fibers of the projection $T^*Y\to Y$, and $SS(M)$ is $\bb G_m$-stable.
+
+\begin{exam}
+	Take $Y=\C^n$. Then $A_0=k[Y]$, which we call $\mc O_Y$. We take $M=M_0=\mc O_Y$, which is itself a good filtration. Then $\gr M = \mc O_Y$, thought of as a D-module via the construction $\mc D_Y(1)$.  as well. Then $SS(M)=\Supp(\mc O_Y)$ is the zero section $Y$ inside $T^*Y$. 
+\end{exam}
+
+\begin{exam}
+	Pick $y\in Y$ and let $M=\Delta_y=\mc D/\mc D I_y$, where $I_y$ is the ideal of vanishing of $y$. Equip $M$ with the quotient filtration coming from the order filtration on $\mc D$. Then $\gr M = \Sym(T_yY)=k[T_y^*Y]$. In particular, $SS(M)$ is exactly $T^*_yY$. 
+\end{exam}
+
+The preceding two examples exhibit essentially opposite phenomena of singular support. 
+
+\begin{exam}
+	Let $Y=\bb A^1$ with coordinate $t$, and let $M=\mc D_Y(t^{-1})$. Then $SS(M)$ is the union of $T_0^*Y$ and $Y$ inside $T^*Y$, both with multiplicity 1. 
+\end{exam}
+
+\begin{exam}
+	Let $Y=\bb A^1$ with coordinate $t$, and let $M=\mc D_Y(\log t)$. Then $SS(M)$ is set-theoretically the union of $T_0^*Y$ and $Y$ inside $T^*Y$, but with different multiplicities.
+\end{exam}
+
+\subsection{Another case}
+
+Consider the case of $A$ which is generated by a finite dimensional subspace $A_1$ which contains $k$. Let $A_0=k$, and for $i>1$, let $A_i$ be spanned by elements of the form $a_1\cdots a_i$, where each $a_j\in A_1$. Then this is a filtration on $A$. Then $\gr A$ is commutative if and only if $[A_1,A_1]\subset A_1$, i.e. $A_1$ is a Lie subalgebra of $A$. We assume this is the case. \\
+
+$k$ is a central ideal in $A_1$. There is a surjection $F:\mc U(A_1)/(1_{\mc U}-1_A)\to A$, and $A_i$ is the image of $i$th term of the PBW filtration on $\mc U(A_1)$. The associated graded version of this map is a map $\Sym(A_1/k)\to \gr A$. \\
+
+Now set $A=\mc D(\C^n)$, which we know is generated by coordinates $x_i$ and partials $\p_i$. In particular, if we take $A_1$ to be the $k$-span of $\{1,x_1,\dots,x_n,\p_1,\dots,\p_n\}$, then we are in the setting as before, and we obtain a filtration on $A$ called the \textbf{Bernstein filtration}. The associated graded is $k[x_1,\dots,x_n,\p_1,\dots,\p_n]$, where all generators have degree 1. $A_1$ is the \textbf{Heisenberg Lie algebra} $\mc H$; it has basis $1,x_1,\dots,x_n,\p_1,\dots,\p_n$ such that $1$ is central, the $x_i$ commute with each other, the $\p_i$ commute with each other, and $[\p_i,x_j]=\delta_{ij}\cdot 1$. The Lie algebra $\mc H$ fits into a short exact sequence $0\to k\to \mc H\to k^{2n}\to 0$, where $k$ and $k^{2n}$ are abelian Lie algebras of the appropriate dimension. We note $\mc H$ is nilpotent, in particular $[[\mc H,\mc H],\mc H]=0$. 
+
 \end{document}
