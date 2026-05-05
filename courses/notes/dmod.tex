@@ -1644,4 +1644,92 @@ Fix $f\in k[x_1,\dots,x_n]$ of degree $d$. Let $U=k^n\setminus\{f=0\}$. Then $\m
 	$M_Uf^s[s]\cong (M_U[s])^\tau$. 
 \end{claim}
 
+\newpage
+
+\section{May 5}
+
+\subsection{$b$-function on affine space}
+
+We continue as before. Let $A=\mc D(\C^n)$ with Bernstein filtration. Let $N$ be a $\mc D$-module with increasing filtration $F_\bullet N$ such that $A_iF_jN\subset F_{i+j}N$; we do not assume $N$ is finitely generated or that the filtration is good. 
+
+\begin{lem}
+	Assume that for $j$ large enough, $\dim(F_jN)\le cj^d/{d!}+\text{ lower order terms}$ where $c,d$ are arbitrary. Then for any finitely generated submodule $M\subset N$, we have $d(M)\le d$, and if $d=n$, then $d(M)=n$ and $c(M)\le c_N$, where $c_N$ is some constant depending on $N$. 
+\end{lem}
+
+\begin{proof}
+	Since $M$ is finitely generated, we can choose a good filtration $M_i$ on $M$. Thus there is some large $k$ such that $M_{i+k}=A_iM_k$ for all $i$. Let $F_jM=M\cap F_jN$. There is some large $\ell$ such that $M_k\subset F_\ell M$. Then for all $i$ we have $M_{i+k}\subset F_{i+\ell}M$. Then for $i$ large, we have \begin{gather*}
+		c(M)\frac{(i+k)^{d(M)}}{d(M)!}+\cdots = \dim M_{i+k}\le \dim F_{i+\ell}M\le \dim F_{i+\ell}N \le c\frac{(i+\ell)^d}{d!}+\dots
+	\end{gather*} so the result follows. \nts{might need some elaboration}
+\end{proof}
+
+Now, as last time, fix $f\in k[x_1,\dots,x_n]$ of degree $d$. Let $U=k^n\setminus\{f=0\}$.
+
+\begin{thm}[Theorem on $b$-function]
+	Let $M=Am$ be a cyclic $A$-module which is $f$-torsion free, so $M\into M_f=M|_U$. If $M$ is holonomic, then there is $b\in \C[s]$ and $u\in A[s]$ such that $u(mf^{s+1})=b(s)mf^s$. 
+\end{thm}
+
+\begin{proof}
+	Let $K=\C(s)$. Let $\wt A = K\otimes A = \mc D(K^n)$. Let $N=K\otimes M|_Uf^s$, which is explicitly \begin{gather*}
+		\bigcup_{j\ge 0} \{ \frac1{f^j} umf^s \mid u\in \wt A  \}. 
+	\end{gather*} We view $N$ as a $\wt A$-module. We introduce the following filtration on $N$: \begin{gather*}
+	F_jN = \frac1{f^j}(\wt A_{j(d+1)}m)f^s.
+	\end{gather*} The operator $\p_i$ acts on an element of $F_jN$ by \begin{gather*}
+	\p_i:\frac1{f^j}umf^s\mapsto \frac1{f^{j+1}}\bigp{ f\p_iu+(s-j)(\p_if)u }mf^s,
+	\end{gather*} where $u\in \wt A_{j(d+1)}$. We want to show that the output is in $F_{(j+1)(d+1)}N$. Indeed, the term $f\p_iu$ has degree at most $d+1+j(d+1)=(j+1)(d+1)$, and the term $(s-j)(\p_if)u$ has degree at most $d-1+j(d+1)$, which is less than $(j+1)(d+1)$. Now \begin{gather*}
+	\dim_K(F_jN)=\dim_K(\wt A_{j(d+1)}m)=\dim_\C(A_{j(d+1)}m).
+	\end{gather*} For $j$ large, we thus have \begin{gather*}
+	\dim_K(F_jN)=c(M)\frac{(j(d+1))^{d(M)}}{d(M)!}+\cdots \\
+	= c(M)(d+1)^n\frac{j^n}{n!}+\cdots 
+	\end{gather*} where we use $d(M)=n$ by hypothesis that $M$ is holonomic. \\
+	
+	Now, for $j\ge0$, we have a decreasing family of finitely generated $\wt A$-submodules $\wt M_j$ of $N$ given by $\wt M_j = \wt A(mf^{s+j})$. By the Lemma, each $\wt M_j$ is a holonomic $\wt A$-module. Since holonomic modules have finite length, there is some large $\ell$ such that $\wt M_{\ell}=\wt M_{\ell+1}$. Thus there is some $\wt u\in \wt A$ such that $mf^{s+\ell}=\wt u(mf^{s+\ell+1})$. Via a translation of $K$, we may assume $\ell = 0$. Now we can write $\wt u = u/b(s)$ for some $u\in A[s]$, which gives the desired result.
+\end{proof}
+
+\begin{thm}
+	Let $M$ be a holonomic $A$-module. Then $M_f=M|_U$ is a holonomic $A$-module.
+\end{thm}
+
+\begin{proof}[Sketch]
+	Since $M$ has finite length, we may assume $M$ is simple, and in particular, $M=Am$. Define $F_jM_f = \frac1{f^j}A_{j(d+1)}m$. Then a similar argument to the proof of the previous theorem suffices.
+\end{proof}
+
+\begin{note}
+	 ``The meaning [of the filtration] is that Bernstein is very smart." - Victor Ginzburg
+\end{note}
+
+\begin{exam}
+	Let $n=1$ and $f(x)=x$ on $\C$. Then $U=\C^\times$. Let $M=\C[x]=A\cdot 1$, which is a holonomic $A$-module. The singular support of $M$ is the zero section of $T^*\C$. We have $M_f=\C[x^{\pm 1}]$. This is in fact finitely generated as an $A$-module, namely $M_f = A\cdot \frac1x$. As an $A$-module, the quotient $M_f/M$ is $\Delta_0$. Since $SS(\Delta_0)$ is the fiber $T_0^*\C$, we see that $SS(M_f)$ is the ``cross" inside $T^*\C$.
+\end{exam} 
+
+\subsection{$b$-function on arbitrary variety}
+
+Let $X$ be an arbitrary variety. Let $M=\mc D_Xm$ be holomonic (now taken with respect to the order filtration) $\mc D_X$-module. Let $f\in\mc O(X)$ and $U=\{f\ne 0\}$. 
+
+\begin{thm}
+	There is some $u\in\mc D_X[s]$ and $b\in \C[s]$ such that $b(s)mf^s=u(mf^{s+1})$. 
+\end{thm}
+
+\begin{proof}[Sketch]
+	As before, let $K=\C(s)$ and form appropriate base changes. In particular, since $M$ is holonomic, $\wt{\mc D}_Umf^s$ is \nts{what goes here?}. Now we blackbox the following result:
+	
+	\begin{thm}[Extension theorem]
+		Let $L$ be a finitely generated $\mc D_U$-module such that $\dim SS(L)=d$. Then there is a finitely generated $\mc D_X$-module $E$ such that $E|_U=L$ and $\dim SS(E)=\dim SS(L)$. 
+	\end{thm}
+	
+	We extend $\wt{\mc D}_Umf^s$ to a $\wt{\mc D}_X$-module $E$. \nts{some quotient} is supported on $\{f=0\}$, so by Nullstellensatz, there is some large $N$ such that $f^N$ that kills it. In particular, $mf^{s+N}\in E$. Define $M_\ell = \mc D_X mf^{s+\ell}$ \nts{and then what?}
+\end{proof}
+
+\subsection{Gabber-Kashiwara-Sato filtration}
+
+Let $A$ be a filtered algebra such that $A_0=k$, $\gr A$ is commutative, and $X=\Spec(\gr A)$ is Cohen-Macaulay. Let $M$ bea finitely generated $A$-module with $d=d(M)=\dim SS(M)$. 
+
+\begin{thm}
+	There is a canonical filtration of $M$ by $A$-submodules $G_i^{GKS}M$, for $i\in\{0,\dots,d\}$, such that \begin{itemize}
+		\item $\dim SS(G_i^{GKS}M)=i$ for each $i$. 
+		\item All irreducible components of $SS(G^{GKS}_iM/G^{GKS}_{i-1}M)$ have dimension $i$. 
+	\end{itemize} 
+\end{thm}
+
+Let $\mf g$ be a semisimple Lie algebra. Let $Z\mf g$ be the center of $\mc U\mf g$, and let $\mc U_0\mf g$ be the quotient of $\mc U\mf g$ by the augmentation ideal of $Z\mf g$. Beilinson-Bernstein theorem says $\mc U_0\mf g \cong \mc D(\mc B)$. We have $\Spec(\gr \mc U_0\mf g)=\mc N\subset \mf g^*$. For a finitely generated $\mc U_0\mf g$-module $M$, we may view $M$ as a $\mc D(\mc B)$-module, and then apply localization to get a $\mc D_{\mc B}$-module $\Loc M$. The singular support of $\Loc M$ sits inside $T^*\mc B$ and maps down to $SS(M)\subset \mc N$ under the Springer resolution.
+
 \end{document}
