@@ -111,6 +111,8 @@
 \newcommand{\Eu}{\mathrm{Eu}}
 \newcommand{\coker}{\mathrm{coker}}
 \newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\ob}{\mathrm{ob}}
+\newcommand{\reg}{\mathrm{reg}}
 
 \newcommand{\confusion}[0]{\textcolor{red}{(???)}}
 \newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
@@ -1822,5 +1824,94 @@ Now, consider the Springer resolution $\pi:T^*\mc B\to \mc N$. We have that $SS(
 \begin{cor}
 	For all $M\in  \Rmod{(\mc U_0,\mf b)}$, the module $\Loc M$ is holonomic.
 \end{cor}
+
+\newpage
+
+\section{May 12}
+
+\subsection{Perfect obstruction theory (or -1 shifted (derived) symplectic geometry)}
+
+Ideas from paper by Brav, Bussi, Joyce \href{https://arxiv.org/abs/1305.6302v4}{https://arxiv.org/abs/1305.6302v4}. Also related to a recent seminar talk at UChicago about microlocal stuff. \\
+
+Let $X$ be a smooth variety with closed and possibly singular subvariety $Z$. We let $I$ be the ideal sheaf of $Z$. \\
+
+The \textbf{normal bundle} is $N_Z=\Spec\Sym(I/I^2)$, which is a closed conical subvariety of $T_X|_Z$, where conical means stable under the fiberwise $\C^\times$-action. For singular $I$, this space may be poorly behaved. A better option is the \textbf{normal cone} $C_Z\subset N_Z$ given by $\Spec(\bigoplus_{i\ge 0} I^i/I^{i+1})$, where $I^0=\mc O_X$. There is a natural map $\Sym(I/I^2)\to \bigoplus_{i\ge 0} I^i/I^{i+1}$, which is surjective by graded Nakayama's lemma, that induces the inclusion $C_Z\into N_Z$. If $Z$ is smooth, the map $\Sym(I/I^2)\to \bigoplus_{i\ge 0} I^i/I^{i+1}$ is an isomorphism, so $C_Z=N_Z$. \nts{I don't remember if this is if and only if}
+
+\begin{exam}
+	Let $Z=\{x_1^2+x_2^2+x_3^2=0\}\subset\C^3$. Then $Z$ is singular only at the origin 0, and $N_{Z,0}=\C^3$. However, $C_{Z,0}= Z$ inside $N_{Z,0}$. 
+\end{exam}
+
+Let $\alpha$ be a 1-form on $X$, which is a section $X\to T^*X$. We take $Z$ to be the zero locus of $\alpha$, which is $\im(\alpha)\cap T^*_XX$. More explicitly, we have contraction $i_\alpha:T_X\to \mc O_X$ given by $\xi\mapsto \alpha(\xi)$, which is $\mc O_X$-linear, and we let $Z$ be the subscheme determined by the ideal sheaf $\im(i_\alpha)$. \\
+
+Now consider the composition $T_X\xr{i_\alpha} \mc O_X\xr d T_X^*$.
+
+\begin{thm}
+	Assume $d\alpha=0$. Then \begin{enumerate}
+		\item $d\circ i_\alpha$ descends to an $\mc O_Z$-linear map $\ob_\alpha:T_X|_Z\to T_X^*|_Z$. This is called the \textbf{obstruction map}.
+		\item $\ob_\alpha$ is self-adjoint.
+		\item The image of the composite \begin{gather*}
+			C_Z\into N_Z\into T_X|_Z\xr{\ob_\alpha} T_X^*|_Z\into T^*X
+		\end{gather*} is a conical Lagrangian subvariety.
+	\end{enumerate}
+\end{thm}
+
+Special case/local consideration: $\alpha = df$ for some $f\in \mc O(X)$. Then $Z$ is the critical locus of $f$, i.e. set-theoretically those $x\in X$ with $d_xf=0$. On this locus, there is a symmetric bilinear form $d^2f$ on $T_X|_Z$. If $x_i$ are \'etale coords, then $\frac{\p^2f}{\p x_i \p x_j}$ give the matrix entries. The obstruction map in this case is the Hessian $\ppxi i \mapsto \sum \frac{\p^2f}{\p x_i \p x_j} dx_j$. 
+
+Now let $\omega$ be the standard symplectic form on $T^*X$, and let $\Eu$ be the Euler vector field on $T^*X$ that generates the fiberwise $\C^\times$-action. If we pick coordinates $x_i$ for $X$ and dual coordinates $y_i$ for the fibers of $p:T^*X\to X$, then $\omega = \sum dx_idy_i$ and $\Eu=\sum y_i \pp{y_i}$. The Liouville 1-form on $T^*X$ is $\lambda = i_\Eu\omega$, which in coordinates is $\sum y_idx_i$. Note that $\omega = -d\lambda$. This also follows, without coordinates, by Cartan's ``magic formula". 
+
+\begin{lem}
+	Let $\Lambda\subset T^*X$ be a conical closed irreducible subvariety, so that $p(\Lambda)\subset X$. Then \begin{enumerate}
+		\item The regular locus $\Lambda_{\reg}$ is Lagrangian if and only if $\dim \Lambda = \dim X$ and $\lambda=0$ on $\Lambda_{\reg}$. 
+		\item If $\Lambda_{\reg}$ is Lagrangian, then $\Lambda = \ol{T_{p(\Lambda)_{\reg}}^*X} $.
+	\end{enumerate}
+\end{lem}
+
+Now fix $z\in Z$, a critical point of $f$. 
+
+\begin{claim}
+	The following sequence of vector spaces is exact: \begin{gather*}
+		0\to T_zZ\to T_zX\xr{\ob_{df}} T_z^*X\to T_z^*Z\to 0.
+	\end{gather*}
+	In other words, the induced map $\ob_{df}:N_z\to N_z^*$ is an isomorphism.
+\end{claim}
+
+\begin{thm}
+	\begin{enumerate}
+		\item $f(Z)$ is a finite set.
+		\item Let $F$ be an automorphism of $X$ such that $f\circ F = f$ and $F|_Z=\id$. Then the linear map $d_zF: T_zX\to T_zX$ has determinant $\pm 1$. 
+	\end{enumerate}
+\end{thm}
+
+Now we discuss motivation from mirror symmetry. We want to compute GW = Gromov-Witten invariant(s). This involves some ``virtual" classes that try to force things to behave as if a relevant space were 0-dimensional. \\
+
+Key point: our $Z$, the critical locus of $f$, has virtual dimension zero. 
+
+\begin{thm}
+	There is a canonical constructible (i.e. constant on strata for some stratification) function $\nu_{Z,f} : Z\to \Z$.
+\end{thm}
+
+The relevant integers in GW are of the form \begin{gather*}
+	\sum_{k\in\Z}k\chi( \nu_{Z,f}^{-1}(k)),
+\end{gather*} where $\chi$ is the Euler characteristic. \\
+
+Riemann-Hilbert is a functor $dR$ from the category of holonomic $\mc D_X$-modules to the constructible derived category of $X$. Given a constructible complex $\mc F$, there is an associated constructible function $\eta(\mc F)$ given by \begin{gather*}
+	\eta(\mc F)(x)=\sum_{i\in\Z}(-1)^i\dim \mc H_x^i\mc F.
+\end{gather*} Now let $\mc M$ be a holonomic $\mc D_X$-module. To it, we can associate the constructible function $\eta(dR(\mc M))$, as well as its characteristic cycle. The characteristic cycle is the support cycle of $\gr \mc M$ with respect to a good filtration, and which is a conical Lagrangian cycle in $T^*X$. It turns out there is a construction which takes conical Lagrangian cycles in $T^*X$ to constructible functions on $X$, which does not involve D-modules at all, but it is very complicated. 
+
+\begin{thm}
+	The image of $C_Z$ in $T^*X$ determines a conical Lagrangian cycle whose associated constructible function is $\nu_{Z,f}$. 
+\end{thm}
+
+\begin{rmk}
+	Furthermore, there is a $\mc D_X$-module that produces the cycle and constructible function, namely the $\mc D_X$-module of vanishing\nts{(?)} cycles, which we will explain in due time.
+\end{rmk}
+
+Recall that $Z$ is the intersection of two smooth Lagrangian subvarieties of $T^*X$, namely $\im(df)$ and the zero section $X\subset T^*X$. \\
+
+Let $M$ be a smooth symplectic variety with smooth Lagrangian subvarieties $\Lambda_1,\Lambda_2$. Set $Z=\Lambda_1\cap \Lambda_2$. One can define obstruction and constructible function depending on $\Lambda_1,\Lambda_2$. \\
+
+All of this has a 2-categorical perspective, at least according to physicists. There is a 2-category whose objects are Lagrangian subvarieties, 1-morphisms are called ``matrix factorizations", and 2-morphisms are vector spaces that are essentially cohomology of vanishing cycles. \\
+
+For $E_1,E_2$ vector bundles on $X$, there is a related moduli space of maps $u:E_1\to E_2$, $v:E_2\to E_1$, such that $uv=vu=f\cdot \id$. 
 
 \end{document}
