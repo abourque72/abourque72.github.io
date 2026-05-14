@@ -113,6 +113,8 @@
 \newcommand{\Coh}{\mathrm{Coh}}
 \newcommand{\ob}{\mathrm{ob}}
 \newcommand{\reg}{\mathrm{reg}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\gks}{\mathrm{GKS}}
 
 \newcommand{\confusion}[0]{\textcolor{red}{(???)}}
 \newcommand{\ntsbang}[0]{\textcolor{red}{(!!!)}}
@@ -1913,5 +1915,101 @@ Let $M$ be a smooth symplectic variety with smooth Lagrangian subvarieties $\Lam
 All of this has a 2-categorical perspective, at least according to physicists. There is a 2-category whose objects are Lagrangian subvarieties, 1-morphisms are called ``matrix factorizations", and 2-morphisms are vector spaces that are essentially cohomology of vanishing cycles. \\
 
 For $E_1,E_2$ vector bundles on $X$, there is a related moduli space of maps $u:E_1\to E_2$, $v:E_2\to E_1$, such that $uv=vu=f\cdot \id$. 
+
+\newpage
+
+\section{May 14}
+
+\subsection{Duality}
+
+Let $A$ be an associative $k$-algebra. Let $M$ be a left, resp. right $A$-module. Then $\check M = \Hom_A(M,A)$ is a right, resp. left $A$-module. This gives an equivalence between $A$-modules and $A^\op$ modules, where in particular $\check A = A^\op$. \\
+
+Now let $A$ be filtered with $k\subset A_0$. Assume $\gr A$ is finitely generated and commutative, and $S=\Spec(\gr A)$ is a smooth connected variety of dimension $d$. Let $M$ be a finitely generated $A$-module with good filtration $M_i$.\\
+
+Let $RA$ be the Rees algebra and let $RM$ be the Rees $RA$-module. We can find a resolution of $RM$ by graded free finite rank $RA$-modules; that we can guarantee finite rank follows from the assumption that $\gr A$ is finitely generated. \\
+
+Recall that $RA$ is a graded $k[t]$-algebra with $RA/t\cong \gr A$ and $RA/(t-1)\cong A$. Furthermore, these specializations induce resolutions of $\gr M$ and $M$ by finite rank free modules over $\gr A$ and $A$ respectively. Moreover, the resolution of $\gr M$ is obtained by taking the associated graded of the resolution of $M$. Note that it is not true in general that one can take an arbitrary finite rank free resolution of $M$ and take associated graded to get such a resolution of $\gr M$; this is why we pass to the Rees algebra. \\
+
+So, let $\cdots\to F_{-1}\to F_0\to M$ be the resolution of $M$. We can dualize to obtain the complex $R\Hom(M,A)$, which is $\check F_0 \to \check F_{-1}\to \cdots$. We can do similar things for $\gr M$. There is a spectral sequence whose $E_2$ page is given by $E_2=(\gr_\bullet F_\bullet)^{\vee}
+$, and which converges to $E_\infty = \gr_\bullet (\check F_\bullet)$. \\
+
+Since $S=\Spec(\gr A)$ is smooth of dimension $d$, the cohomology of this $E_2$ page vanishes in degrees $i>d$. Then the same is true of $E_\infty$. Thus $\Ext^i_A(M,A)=R^i\Hom(M,A)=0$ for $i>d$. 
+
+\begin{exam}
+	Let $a\in A$ be a non zero divisor (i.e. if $ab=0$ or $ba=0$, then $b=0$). Then $M=A/Aa$ can be resolved as follows: % https://q.uiver.app/#q=WzAsNSxbMCwwLCJBIl0sWzEsMCwiQSJdLFsyLDAsIk0iXSxbMCwxLCJGX3stMX0iXSxbMSwxLCJGXzAiXSxbMCwxLCJcXGNkb3QgYSJdLFsxLDJdLFsxLDQsIiIsMCx7Im9mZnNldCI6LTEsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSw0LCIiLDAseyJvZmZzZXQiOjEsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCIiLDIseyJvZmZzZXQiOjEsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCIiLDIseyJvZmZzZXQiOi0xLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+	\[\begin{tikzcd}
+		A & A & M \\
+		{F_{-1}} & {F_0}
+		\arrow["{\cdot a}", from=1-1, to=1-2]
+		\arrow[shift right, no head, from=1-1, to=2-1]
+		\arrow[shift left, no head, from=1-1, to=2-1]
+		\arrow[from=1-2, to=1-3]
+		\arrow[shift left, no head, from=1-2, to=2-2]
+		\arrow[shift right, no head, from=1-2, to=2-2]
+	\end{tikzcd}\]
+	The dual complex is given by multiplication of $a$ on the left, and the module $A/aA$ sits as degree 1 cohomology. 
+\end{exam}
+
+\begin{rmk}
+	$\gr (A^\op) = \gr A$.
+\end{rmk}
+
+The spectral sequence shows us that $SS(\Ext^i_A(M,A))\subset SS(M)$. \\
+
+Let $D(A)$ be the derived category of complexes $M_\bullet$ of $A$-modules such that $H^i(M_\bullet)$ is finitely generated for all $i$, and $H^i(M_\bullet)=0$ for all but finitely many $i$. We define $SS(M_\bullet)=\bigcup SS(H^i(M_\bullet))$. We can extend the functor $R\Hom$ to a functor $\bb D:D(A)\to D(A^\op)$. We use the same symbol to denote the similarly defined functor $D(A^\op)\to D(A)$. This functor satisfies the following properties: \begin{enumerate}
+	\item $\bb D^2=\id$. This follows from reducing to free modules and $\check{\check A}=A$. 
+	\item $SS(\bb DM_\bullet)=SS(M_\bullet)$. This follows from $SS(\Ext^i_A(M,A))\subset SS(M)$ and item 1.
+\end{enumerate}
+
+For all $i$ there is a truncation functor $\tau_{\ge i}$ given by \begin{gather*}
+	(\tau_{\ge i}M_\bullet)_j = \begin{cases}
+		M_j & j\ge i \\
+		\p(M_{i-1}) & j = i-1 \\
+		0 & j < i-1
+	\end{cases}
+\end{gather*} where $\p$ is the differential of $M_\bullet$. The map $(\tau_{\ge i}M_\bullet)_{i-1}\to (\tau_{\ge i}M_\bullet)_i$ is the inclusion $\p(M_{i-1})\into M_i$. There is a natural morphism $M_\bullet\to \tau_{\ge i}M_\bullet$, which is degree-wise given by the identity for $j\ne i-1$ and $\p$ for $j=i-1$. We also have \begin{gather*}
+H^j(\tau_{\ge i}M_\bullet)=\begin{cases}
+	H^j(M_\bullet) & j\ge i\\
+	0 & j < i
+\end{cases}
+\end{gather*}
+
+Given a finitely generated $A$-module $M$, we define the Gabber-Kashiwara-Sato (GKS) filtration $F^\gks_rM$ as follows. Consider $M$ as a complex in degree 0. We can then apply $\bb D$ to get a complex in $D(A^\op)$. Then it maps to $\tau_{\ge d-r}\bb DM$. Applying $\bb D$ again gives a map $\bb D\tau_{\ge d-r}\bb DM\to \bb D^2 M \cong M$. Finally we take the induced map on $H^0$. We define \begin{gather*}
+	F_r^\gks = \im(H^0\bb D\tau_{\ge d-r}\bb DM\to M).
+\end{gather*} 
+
+\begin{thm}
+	\begin{enumerate}
+		\item $\dim SS(\Ext^i_A(M,A))\le d-i$.
+		\item $\Ext^i_A(M,A)=0$ unless $d-\dim SS(M)\le i\le d$.
+		\item All irreducible components of $SS(F^\gks_rM/F^\gks_{r-1}M)$ has dimension $r$. 
+	\end{enumerate}
+\end{thm}
+
+We will not prove this theorem, but we will apply it to the case of D-modules.
+
+\subsection{Duality for D-modules}
+
+Let $A=\mc D_X$ for some $n$-dimensional $X$. Then our $d=\dim \Spec(\gr A)$ is $\dim (T^*X)=2n$. 
+
+\begin{cor}
+	If $M$ is a holonomic $\mc D_X$-module, then $\Ext^i_A(M,A)=0$ unless $i=n$. 
+\end{cor}
+
+\begin{proof}
+	By the theorem we see $\Ext^i_A(M,A)=0$ unless $n\ge i \ge 2n$, and that for $i>n$ we have $\dim SS(\Ext^i_A(M,A))\le 2n-i< n$. But this violates Bernstein's inequality. 
+\end{proof}
+
+Thus $R\Hom(M,A)$ is concentrated in a single degree, and in this degree it is given by $\Ext^n(M,A)$, which is a holonomic module. We now redefine $\bb D$ as a functor from holonomic left modules to holonomic right modules which takes $M$ to $\Ext^n(M,A)$. Passing to the derived category we have an exact functor $\bb D$ that squares to $\id$. \\
+
+Let $f\in \mc O(X)$. Let $Y$ be the vanishing locus of $f$ and let $U$ be the nonvanishing locus of $f$. Let $j:U\into X$ be the embedding. Then we have a functor $j_*$ from $\mc D_U$ modules to $\mc D_X$ modules, which agrees with the usual $\mc O$-module pushforward. It is exact. The $b$ function theorem implies $j_*$ takes holonomic modules to holonomic modules. Let $\mc Hol$ denote the category of holonomic modules. We define $j_!:\mc Hol_U\to \mc Hol_X$ by $M\mapsto \bb Dj_*\bb DM$. 
+
+\begin{exam}
+	Let $X=\C$ and $f(x)=x$. Let $M=\C[x,x^{-1}]$. We have seen previously that $j_*M$ is just $M$ as a $\C[x]$-module, and it is length two, containing $\mc O=\C[x]$ as a submodule and having $\Delta_0$ as the quotient. Furthermore, $j_*M$ is the $\mc D$-module determined by $x^{-1}$, i.e. $\mc Dx^{-1}$, which is $\mc D/\mc D\p x$.\\ 
+	
+	By duality, $j_!M$ has $\Delta_0$ as a submodule and $\C[x]$ as the quotient. It does not have a simple description in terms of polynomials, but it is given by $\mc D/\mc Dx\p$. \\
+	
+	We note that the $\mc D$-module determined by $\log x$, namely $\mc D/\mc D\p x \p$, can be used to form both $j_*M$ and $j_!M$ by taking quotients or submodules as appropriate.  
+\end{exam}
 
 \end{document}
